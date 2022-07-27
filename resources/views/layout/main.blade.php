@@ -48,7 +48,7 @@
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
-                        <p>{{ date('Y') }} &copy; PGG Centre - Behaestex Group</p>
+                        <p>{{ date('Y') }} &copy; {{ env('APP_NAME') }} - Behaestex Group</p>
                     </div>
                     <div class="float-end">
                         <p>Crafted by <a href="">IT BTX</a></p>
