@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [HomeController::class, 'index']);
+// Siswa
 Route::get('/generate_siswa', [SiswaController::class, 'generate_siswa']);
 Route::get('/generate_dbf', [SiswaController::class, 'generate_dbf']);
 Route::get('/write_dbf', [SiswaController::class, 'write_dbf']);

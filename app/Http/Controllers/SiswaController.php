@@ -20,7 +20,6 @@ class SiswaController extends Controller
         $date = date('Ymd');
         $table = new TableEditor('doc\siswa' . $date . '.dbf');
         $table->deleteRecord();
-
         $table
             ->pack() //remove deleted rows
             ->save() //save changes
@@ -39,8 +38,6 @@ class SiswaController extends Controller
         if (file_exists($filepath)) {
             unlink($filepath);
         }
-
-
         $tableCreator = new TableCreator($filepath, $header);
         // return 'ok';
         // format Kolom yang ada di file dbf
