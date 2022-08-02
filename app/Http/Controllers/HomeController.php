@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Siswa;
+// use App\Models\Siswa;
 
 use Illuminate\Http\Request;
 
@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         $data = [
             'title' => 'Home',
-            'get_siswa' => Siswa::all(),
+            // 'get_siswa' => Siswa::all(),
 
         ];
         return view('dashboard', $data);
