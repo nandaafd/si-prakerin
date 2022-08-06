@@ -37,36 +37,26 @@ class WoKikppcController extends Controller
         $data = [];
         $data_detail_lusi = [];
         foreach ($data_wo as $wo) {
-            $data_lusi = WoKikppc::get_lusi($wo->no_kik);
+            $data_lusi = WoKikppc::get_lusi($wo->wow_no);
 
             foreach ($data_lusi as $lusi) {
                 $data_detail_lusi[] = array(
                     'Kategori' => $lusi->patt_cat_desc,
-                    'qty_kg' => $lusi->qty_kg,
+                    'qty_helai' => $lusi->qty_helai,
                     'NoUrut' => $lusi->no_urut,
-                );
-            }
-
-            $data_pakan = WoKikppc::get_pakan($wo->no_kik);
-            foreach ($data_pakan as $pakan) {
-                $get_detail_pakan[] = array(
-                    'Kategori' => $pakan->patt_cat_desc,
-                    'qty_kg' => $pakan->qty_kg,
-                    'NoUrut' => $pakan->no_urut,
                 );
             }
 
 
             $data[] = array(
                 'TglKIK' => date('m/d/y', strtotime($wo->wow_date)),
-                'WOWNo' => $wo->no_kik,
+                'WOWNo' => $wo->wow_no,
                 'KDTMB' => $wo->kd_tmb,
                 'PJG' => $wo->length,
                 'NoPatrun' => $wo->kd_patrun,
                 'JMLbenang' => $wo->jml_lusi,
                 'NoBukti' => $wo->no_bukti,
-                // 'DetailLusi' => $data_detail_lusi,
-                'DetailPakan' => $get_detail_pakan,
+                'DetailLusi' => $data_detail_lusi,
             );
         }
 
@@ -142,10 +132,10 @@ class WoKikppcController extends Controller
         $date = date('ymd');
         $header = HeaderFactory::create(TableType::DBASE_III_PLUS_MEMO);
         $filepath = $path . "\WO" . $date . ".dbf";
-        // unlink($filepath);
-        if (file_exists($filepath)) {
-            unlink($path . "\WO" . $date . ".dbf");
-        }
+        unlink($filepath);
+        // if (file_exists($filepath)) {
+        //     unlink($path . "\WO" . $date . ".dbf");
+        // }
         $tableCreator = new TableCreator($filepath, $header);
         $tableCreator
             ->addColumn(new Column([
@@ -945,76 +935,19 @@ class WoKikppcController extends Controller
                 'editMode' => TableEditor::EDIT_MODE_CLONE, //default
             ]
         );
-        $get_data_wo = WoKikppc::get_wo();
+        $get_wo = WoKikppc::get();
 
-        foreach ($get_data_wo as $row) {
+        foreach ($get_wo as $row) {
 
             $record = $table->appendRecord();
             $record->set('TGL_KIK', date('m/d/y', strtotime($row->wow_date)));
             $record->set('NO_KIK', $row->no_kik);
-            $record->set('NO_PATRUN', substr($row->kd_patrun, 7, 4));
+            $record->set('NO_PATRUN', $row->kd_patrun);
             $record->set('NO_TAM', $row->kd_tmb);
             $record->set('KODE_PROD', $row->prd_code);
             $record->set('PJG', $row->length);
             $record->set('JML_BNG', $row->jml_lusi);
             $record->set('NO_BUKTI', $row->no_bukti);
-
-            // Lusi
-            $data_lusi = WoKikppc::get_lusi($row->no_kik);
-
-            foreach ($data_lusi as $lusi) {
-                if ($lusi->no_urut == '1') {
-                    $record->set('LUSI1', $lusi->qty_kg);
-                }
-                if ($lusi->no_urut == '2') {
-                    $record->set('LUSI2', $lusi->qty_kg);
-                }
-                if ($lusi->no_urut == '3') {
-                    $record->set('LUSI3', $lusi->qty_kg);
-                }
-                if ($lusi->no_urut == '4') {
-                    $record->set('LUSI4', $lusi->qty_kg);
-                }
-                if ($lusi->no_urut == '5') {
-                    $record->set('LUSI5', $lusi->qty_kg);
-                }
-            }
-            // End Lusi
-            // PAKAN
-            $data_pakan = WoKikppc::get_pakan($row->no_kik);
-            foreach ($data_pakan as $pakan) {
-                if ($pakan->no_urut == '1') {
-                    $record->set('PAKAN1', $pakan->qty_kg);
-                }
-                if ($pakan->no_urut == '2') {
-                    $record->set('PAKAN2', $pakan->qty_kg);
-                }
-                if ($pakan->no_urut == '3') {
-                    $record->set('PAKAN3', $pakan->qty_kg);
-                }
-                if ($pakan->no_urut == '4') {
-                    $record->set('PAKAN4', $pakan->qty_kg);
-                }
-                if ($pakan->no_urut == '5') {
-                    $record->set('PAKAN5', $pakan->qty_kg);
-                }
-                if ($pakan->no_urut == '6') {
-                    $record->set('PAKAN6', $pakan->qty_kg);
-                }
-                if ($pakan->no_urut == '7') {
-                    $record->set('PAKAN7', $pakan->qty_kg);
-                }
-                if ($pakan->no_urut == '8') {
-                    $record->set('PAKAN8', $pakan->qty_kg);
-                }
-                if ($pakan->no_urut == '9') {
-                    $record->set('PAKAN9', $pakan->qty_kg);
-                }
-                if ($pakan->no_urut == '10') {
-                    $record->set('PAKAN10', $pakan->qty_kg);
-                }
-            }
-            // End Pakan
             $table
                 ->writeRecord($record);
         }

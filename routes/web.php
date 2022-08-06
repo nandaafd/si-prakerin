@@ -29,7 +29,7 @@ Route::get('/write_dbf', [SiswaController::class, 'write_dbf']);
 
 // WO Kikppc
 Route::get('/WO', [WoKikppcController::class, 'index']);
-Route::get('/WO2', [WoKikppcController::class, 'index2']);
+// Route::get('/WO2', [WoKikppcController::class, 'index2']);
 
 Route::get('/generate_wokikppc', [WoKikppcController::class, 'generate_wokikppc']);
 Route::get('/dbf_wokikppc', [WoKikppcController::class, 'dbf_wokikppc']);
