@@ -77,8 +77,7 @@ class WoKikppc extends Model
     public function get_wo()
     {
         // SUBSTRING ( wow.kd_patrun, 8, 4 ) as kd_patrun,
-        $get_wo = DB::connection('pgsql')->select("
-        SELECT 
+        $get_wo = DB::connection('pgsql')->select("SELECT 
             wow.wow_no as no_kik,
             wow.wow_date,
             wow.wow_date,
@@ -115,30 +114,80 @@ class WoKikppc extends Model
     public function get_lusi($wo)
     {
         return DB::connection('pgsql')
-            ->select("SELECT 
-            wow.wow_no,
+            ->select("SELECT
+            wow.wow_no, 
             apd.patt_cat_desc,
             apd.qty_kg,
-            apd.no_urut
+            apd.no_urut,
+            ipmd.barcode
         from
             prod.work_order_weaving wow
         left join prod.atm_pattern_detail apd on
             wow.pattern_id = apd.pattern_id
-        where wow_no  = '$wo' and apd.patt_cat_desc = 'LUSI'");
+        left join im_prd_master_detail ipmd on apd.rm_det_id = ipmd.id 
+        where
+            wow_no = '$wo'
+            and apd.patt_cat_desc = 'LUSI'
+            group by ipmd.barcode,wow.wow_no, apd.patt_cat_desc, apd.qty_kg, apd.no_urut");
     }
 
     public function get_pakan($wo)
     {
         return DB::connection('pgsql')
-            ->select("SELECT 
+            ->select("SELECT
             wow.wow_no,
-            apd.patt_cat_desc,
-            apd.qty_kg,
-            apd.no_urut
+            sum(apd.qty_kg) as qty_kg,
+            apd.no_urut,
+            ipmd.barcode
         from
             prod.work_order_weaving wow
         left join prod.atm_pattern_detail apd on
             wow.pattern_id = apd.pattern_id
-        where wow_no  = '$wo' and apd.patt_cat_desc IN ('PAKAN JHT')");
+        left join im_prd_master_detail ipmd on apd.rm_det_id = ipmd.id 
+        where
+            wow_no = '$wo'
+            and apd.patt_cat_desc in ('PAKAN','PAKAN JHT') 
+            group by ipmd.barcode,wow.wow_no, apd.no_urut ");
+    }
+
+    // tumpal
+    public function get_tumpal($wo)
+    {
+        return DB::connection('pgsql')
+            ->select("SELECT
+            wow.wow_no,
+            sum(apd.qty_kg) as qty_kg,
+            apd.no_urut,
+            ipmd.barcode
+        from
+            prod.work_order_weaving wow
+        left join prod.atm_pattern_detail apd on
+            wow.pattern_id = apd.pattern_id
+        left join im_prd_master_detail ipmd on apd.rm_det_id = ipmd.id 
+        where
+            wow_no = '$wo'
+            and apd.patt_cat_desc in ('TUMPAL','PAKAN TPL') 
+            group by ipmd.barcode,wow.wow_no, apd.no_urut ");
+    }
+
+    // Sulur
+    public function get_sulur($wo)
+    {
+        return DB::connection('pgsql')
+            ->select("SELECT
+            wow.wow_no, 
+            apd.patt_cat_desc,
+            apd.qty_kg,
+            apd.no_urut,
+            ipmd.barcode
+        from
+            prod.work_order_weaving wow
+        left join prod.atm_pattern_detail apd on
+            wow.pattern_id = apd.pattern_id
+        left join im_prd_master_detail ipmd on apd.rm_det_id = ipmd.id 
+        where
+            wow_no = '$wo'
+            and apd.patt_cat_desc = 'SULUR'
+            group by ipmd.barcode,wow.wow_no, apd.patt_cat_desc, apd.qty_kg, apd.no_urut");
     }
 }
