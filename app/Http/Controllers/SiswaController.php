@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Siswa;
+// use App\Models\Siswa;
 
 use XBase\Enum\FieldType;
 use XBase\Enum\TableType;
@@ -20,7 +20,6 @@ class SiswaController extends Controller
         $date = date('Ymd');
         $table = new TableEditor('doc\siswa' . $date . '.dbf');
         $table->deleteRecord();
-
         $table
             ->pack() //remove deleted rows
             ->save() //save changes
@@ -39,8 +38,6 @@ class SiswaController extends Controller
         if (file_exists($filepath)) {
             unlink($filepath);
         }
-
-
         $tableCreator = new TableCreator($filepath, $header);
         // return 'ok';
         // format Kolom yang ada di file dbf
@@ -83,18 +80,18 @@ class SiswaController extends Controller
                 'editMode' => TableEditor::EDIT_MODE_CLONE, //default
             ]
         );
-        $get_siswa = Siswa::all();
+        // $get_siswa = Siswa::all();
 
-        foreach ($get_siswa as $row) {
+        // foreach ($get_siswa as $row) {
 
-            $record = $table->appendRecord();
-            $record->set('nama_siswa', $row->nama_siswa);
-            $record->set('nis', $row->nis);
-            $record->set('alamat', $row->alamat);
-            $record->set('no_telp', $row->no_telp);
-            $table
-                ->writeRecord($record);
-        }
+        //     $record = $table->appendRecord();
+        //     $record->set('nama_siswa', $row->nama_siswa);
+        //     $record->set('nis', $row->nis);
+        //     $record->set('alamat', $row->alamat);
+        //     $record->set('no_telp', $row->no_telp);
+        //     $table
+        //         ->writeRecord($record);
+        // }
 
         $table
             ->save()
