@@ -24,4 +24,4 @@ WORKDIR /var/www/html
 #COPY --chown=www-data:www-data . /var/www/html
 COPY . /var/www/html
 RUN composer install
-CMD [ "php", "artisan", "./serve", "--port=80" ]
+CMD [ "php", "artisan", "./serve", "--port=8080" ]
