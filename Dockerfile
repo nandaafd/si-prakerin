@@ -22,4 +22,4 @@ RUN sudo apt-get update -y \
 
 WORKDIR /var/www/html
 COPY --chown=www-data:www-data . /var/www/html
-RUN php artisan serve --port = 80
+RUN php artisan serve --port=80
