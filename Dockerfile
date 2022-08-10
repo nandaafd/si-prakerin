@@ -1,9 +1,9 @@
-FROM thecodingmachine/php:7.4-v4-apache
+FROM thecodingmachine/php:7.4-v4-cli
 ARG PHP_VER=7.4
 
-ENV APACHE_RUN_USER=www-data \
-    APACHE_RUN_GROUP=www-data \
-    PHP_INI_MEMORY_LIMIT=1g \
+#ENV APACHE_RUN_USER=www-data \
+#    APACHE_RUN_GROUP=www-data \
+ENV PHP_INI_MEMORY_LIMIT=1g \
     PHP_INI_UPLOAD_MAX_FILESIZE=1g \
     PHP_INI_POST_MAX_SIZE=1g \
     PHP_INI_MAX_EXECUTION_TIME=600 \
@@ -21,6 +21,7 @@ RUN sudo apt-get update -y \
     && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/apache2/conf.d/ext-dbase.ini
 
 WORKDIR /var/www/html
-COPY --chown=www-data:www-data . /var/www/html
+#COPY --chown=www-data:www-data . /var/www/html
+COPY . /var/www/html
 RUN composer install
-CMD [ "php artisan serve --port=80" ]
+CMD [ "php", "artisan serve", "--port=80" ]
