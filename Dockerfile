@@ -20,6 +20,8 @@ RUN sudo apt-get update -y \
     && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/cli/conf.d/ext-dbase.ini \
     && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/apache2/conf.d/ext-dbase.ini
 
+RUN cp .env-local .env
+
 WORKDIR /var/www/html
 COPY --chown=www-data:www-data . /var/www/html
 RUN composer install
