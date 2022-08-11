@@ -127,4 +127,5 @@ class WoKikppc extends Model
             and apd.patt_cat_desc = 'SULUR'
             group by ipmd.barcode,wow.wow_no, apd.patt_cat_desc, apd.qty_kg, apd.no_urut");
     }
+    // Fix query 11 Agustus 2022
 }
