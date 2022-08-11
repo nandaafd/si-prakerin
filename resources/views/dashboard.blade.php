@@ -24,7 +24,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                      
+                      <input type="date" class="form-control" name="date">
                         <tr>
                             <td>1</td>
                             <td>Generate Data Siswa</td>
