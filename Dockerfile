@@ -9,7 +9,7 @@ ENV PHP_INI_MEMORY_LIMIT=1g \
     PHP_INI_MAX_EXECUTION_TIME=600 \
     PHP_INI_MAX_INTPUT_TIME=600 
 
-ENV PHP_EXTENSIONS="gd intl mongodb imagick pgsql gettext imap uuid intl bcmath ldap"
+ENV PHP_EXTENSIONS="gd intl mongodb imagick pdo pgsql pdo_pgsql gettext imap uuid intl bcmath ldap"
 
 RUN sudo apt-get update -y \
     && sudo apt-get install -y \
