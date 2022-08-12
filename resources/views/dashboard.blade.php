@@ -40,7 +40,7 @@
                             <td>Generate Data KIKPPC</td>
                             <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione, quas?</td>
                             <td>
-                              <a href="/dbf_wokikppc" class="btn icon icon-left btn-success"><i class="bi bi-list"></i>
+                              <a href="{{ url('/dbf_wokikppc') }}" class="btn icon icon-left btn-success"><i class="bi bi-list"></i>
                               Generate</a>
                             </td>
                         </tr>
