@@ -14,6 +14,7 @@ ENV PHP_EXTENSIONS="gd intl mongodb imagick pdo pgsql pdo_pgsql gettext imap uui
 RUN sudo apt-get update -y \
     && sudo apt-get install -y \
     php${PHP_VER}-dev \
+    php${PHP_VER}-pgsql \
     pkg-config \
     && sudo pecl config-set php_ini /etc/php/${PHP_VER}/apache2/php.ini \
     && sudo pecl install dbase-7.0.0beta1 \
