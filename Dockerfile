@@ -1,3 +1,5 @@
+#LARAVEL via artisan
+
 FROM thecodingmachine/php:7.4-v4-cli
 ARG PHP_VER=7.4
 
