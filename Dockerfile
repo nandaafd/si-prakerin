@@ -5,6 +5,7 @@ ARG PHP_VER=7.4
 
 #ENV APACHE_RUN_USER=www-data \
 #    APACHE_RUN_GROUP=www-data \
+#    APACHE_DOCUMENT_ROOT=/var/www \
 ENV PHP_INI_MEMORY_LIMIT=1g \
     PHP_INI_UPLOAD_MAX_FILESIZE=1g \
     PHP_INI_POST_MAX_SIZE=1g \
@@ -22,8 +23,8 @@ RUN sudo apt-get update -y \
     && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/cli/conf.d/ext-dbase.ini 
 #    && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/apache2/conf.d/ext-dbase.ini
 
-WORKDIR /var/www/html
-#COPY --chown=www-data:www-data . /var/www/html
-COPY . /var/www/html
+WORKDIR /var/www
+#COPY --chown=www-data:www-data . /var/www
+COPY . /var/www
 RUN composer install
 CMD [ "php", "./artisan", "serve","--host=0.0.0.0", "--port=8080" ]
