@@ -93,10 +93,10 @@ class WoKikppcController extends Controller
         $path = public_path('doc');
         $date = date('ymd');
         $header = HeaderFactory::create(TableType::DBASE_III_PLUS_MEMO);
-        $filepath = $path . "\WO" . $date . ".dbf";
+        $filepath = $path . "/WO" . $date . ".dbf";
         // unlink($filepath);
         if (file_exists($filepath)) {
-            unlink($path . "\WO" . $date . ".dbf");
+            unlink($path . "/WO" . $date . ".dbf");
         }
         $tableCreator = new TableCreator($filepath, $header);
         $tableCreator
@@ -951,7 +951,7 @@ class WoKikppcController extends Controller
 
         $date = date('ymd');
         $table = new TableEditor(
-            'doc\WO' . $date . '.dbf',
+            'doc/WO' . $date . '.dbf',
             [
                 'editMode' => TableEditor::EDIT_MODE_CLONE, //default
             ]
@@ -1163,4 +1163,5 @@ class WoKikppcController extends Controller
             ->close();
         return redirect('/');
     }
+    // fix controller
 }
