@@ -24,7 +24,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                      <input type="date" class="form-control" name="date">
+                        <form action="" method="post"></form>
+                        <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <input type="date" class="form-control" id="date" name="date"/>
+                            </div>
+                        </div>
                         <tr>
                             <td>1</td>
                             <td>Generate Data Siswa</td>

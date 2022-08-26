@@ -14,6 +14,7 @@ class WoKikppc extends Model
     public function get_wo()
     {
         // SUBSTRING ( wow.kd_patrun, 8, 4 ) as kd_patrun,
+        // wow.wow_date = '2022-07-28'
         $get_wo = DB::connection('pgsql')->select("SELECT 
             wow.wow_no as no_kik,
             wow.wow_date,
@@ -31,7 +32,7 @@ class WoKikppc extends Model
             prod.work_order_weaving wow
         left join im_prd_master as a on prd_id = a.id
         left join prod.atm_pattern_detail apd on apd.pattern_id = wow.pattern_id
-        WHERE patt_cat_desc = 'LUSI' and wow.wow_date = '2022-07-28'
+        WHERE patt_cat_desc = 'LUSI' and wow.wow_date = '2022-08-10'
         group by
                 apd.patt_cat_desc,
                 wow.wow_no,
