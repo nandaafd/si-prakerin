@@ -1,6 +1,6 @@
 #LARAVEL via artisan
 
-FROM thecodingmachine/php:7.4-v4-cli
+FROM thecodingmachine/php:7.4-v4-apache
 ARG PHP_VER=7.4
 
 #ENV APACHE_RUN_USER=www-data \
@@ -19,11 +19,11 @@ RUN sudo apt-get update -y \
     php${PHP_VER}-pgsql \
     pkg-config \
     && sudo pecl config-set php_ini /etc/php/${PHP_VER}/apache2/php.ini \
-    && sudo pecl install dbase-7.0.0beta1 \
+    && sudo pecl install dbase-7.1.1 \
     && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/cli/conf.d/ext-dbase.ini 
 #    && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/apache2/conf.d/ext-dbase.ini
 
 WORKDIR /var/www
-COPY --chown=docker:docker . /var/www
+COPY --chown=www-data:www-data . /var/www
 RUN composer install
-CMD [ "php", "./artisan", "serve","--host=0.0.0.0", "--port=8080" ]
+#CMD [ "php", "./artisan", "serve","--host=0.0.0.0", "--port=8080" ]
