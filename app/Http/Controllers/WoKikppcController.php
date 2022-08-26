@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\WoKikppc;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
 use XBase\Enum\FieldType;
@@ -20,65 +21,55 @@ use XBase\TableEditor;
 class WoKikppcController extends Controller
 {
 
-    public function index()
-    {
+    // public function index()
+    // {
 
-        $data_wo = WoKikppc::get_wo();
-        // $data_lusi = WoKikppc::get_lusi();
-        // $data = WoKikppc::get();
-        // $get_detail = WoKikppc::get_detail_wo();
-        // $wow_no = "";
-        // $no = 0;
-        // $data_all = [];
-        // $flag = 0;
-        // $data_detail = [];
-        // print_r($data_wo);
-        // dd();
-        $data = [];
-        $data_detail_lusi = [];
-        foreach ($data_wo as $wo) {
-            $data_lusi = WoKikppc::get_lusi($wo->no_kik);
+    //     $data_wo = WoKikppc::get_wo();
+    //     $data = [];
+    //     $data_detail_lusi = [];
+    //     foreach ($data_wo as $wo) {
+    //         $data_lusi = WoKikppc::get_lusi($wo->no_kik);
 
-            foreach ($data_lusi as $lusi) {
-                $data_detail_lusi[] = array(
-                    'Kategori' => $lusi->patt_cat_desc,
-                    'qty_kg' => $lusi->qty_kg,
-                    'NoUrut' => $lusi->no_urut,
-                    'Barcode' => $lusi->barcode,
-                );
-            }
+    //         foreach ($data_lusi as $lusi) {
+    //             $data_detail_lusi[] = array(
+    //                 'Kategori' => $lusi->patt_cat_desc,
+    //                 'qty_kg' => $lusi->qty_kg,
+    //                 'NoUrut' => $lusi->no_urut,
+    //                 'Barcode' => $lusi->barcode,
+    //             );
+    //         }
 
-            $data_pakan = WoKikppc::get_pakan($wo->no_kik);
-            foreach ($data_pakan as $pakan) {
-                $get_detail_pakan[] = array(
-                    'qty_kg' => number_format($pakan->qty_kg, 2),
-                    'NoUrut' => $pakan->no_urut,
-                    'Barcode' => $pakan->barcode,
-                );
-            }
+    //         $data_pakan = WoKikppc::get_pakan($wo->no_kik);
+    //         foreach ($data_pakan as $pakan) {
+    //             $get_detail_pakan[] = array(
+    //                 'qty_kg' => number_format($pakan->qty_kg, 2),
+    //                 'NoUrut' => $pakan->no_urut,
+    //                 'Barcode' => $pakan->barcode,
+    //             );
+    //         }
 
 
-            $data[] = array(
-                'TglKIK' => date('m/d/y', strtotime($wo->wow_date)),
-                'WOWNo' => $wo->no_kik,
-                'KDTMB' => $wo->kd_tmb,
-                'PJG' => $wo->length,
-                'NoPatrun' => $wo->kd_patrun,
-                'JMLbenang' => $wo->jml_lusi,
-                'NoBukti' => $wo->no_bukti,
-                'DetailLusi' => $data_detail_lusi,
-                'DetailPakan' => $get_detail_pakan,
-            );
-        }
+    //         $data[] = array(
+    //             'TglKIK' => date('m/d/y', strtotime($wo->wow_date)),
+    //             'WOWNo' => $wo->no_kik,
+    //             'KDTMB' => $wo->kd_tmb,
+    //             'PJG' => $wo->length,
+    //             'NoPatrun' => $wo->kd_patrun,
+    //             'JMLbenang' => $wo->jml_lusi,
+    //             'NoBukti' => $wo->no_bukti,
+    //             'DetailLusi' => $data_detail_lusi,
+    //             'DetailPakan' => $get_detail_pakan,
+    //         );
+    //     }
 
 
-        return $data;
-    }
+    //     return $data;
+    // }
 
     public function generate_wokikppc()
     {
         $date = date('ymd');
-        $table = new TableEditor('doc\WO' . $date . '.dbf');
+        $table = new TableEditor('.\doc\wow\WO' . $date . '.dbf');
         $table->deleteRecord();
         $table
             ->pack() //remove deleted rows
@@ -88,15 +79,19 @@ class WoKikppcController extends Controller
         return redirect('dbf_wokikppc');
     }
 
-    public function dbf_wokikppc()
+    public function dbf_wokikppc(Request $request)
     {
+
+        // $tanggal = $request->input('date');
+        // dd($tanggal);
+
         $path = public_path('doc');
         $date = date('ymd');
         $header = HeaderFactory::create(TableType::DBASE_III_PLUS_MEMO);
-        $filepath = $path . "/WO" . $date . ".dbf";
+        $filepath = ".\doc\wow\WO" . $date . ".dbf";
         // unlink($filepath);
         if (file_exists($filepath)) {
-            unlink($path . "/WO" . $date . ".dbf");
+            unlink(".\doc\wow\WO" . $date . ".dbf");
         }
         $tableCreator = new TableCreator($filepath, $header);
         $tableCreator
@@ -948,10 +943,11 @@ class WoKikppcController extends Controller
 
     public function write_wokikppc()
     {
+        // $tanggal = $this->input->post('date');
 
         $date = date('ymd');
         $table = new TableEditor(
-            'doc/WO' . $date . '.dbf',
+            '.\doc\wow\WO' . $date . '.dbf',
             [
                 'editMode' => TableEditor::EDIT_MODE_CLONE, //default
             ]
