@@ -20,10 +20,11 @@ RUN sudo apt-get update -y \
     pkg-config \
     && sudo pecl config-set php_ini /etc/php/${PHP_VER}/apache2/php.ini \
     && sudo pecl install dbase-7.1.1 \
-    && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/cli/conf.d/ext-dbase.ini 
+    && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/cli/conf.d/ext-dbase.ini \
     && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/apache2/conf.d/ext-dbase.ini
 
 WORKDIR /var/www
 COPY --chown=www-data:www-data . /var/www
-RUN sudo -u www-data composer update && sudo -u www-data composer installl
+RUN sudo -u www-data composer update \
+    && sudo -u www-data composer installl
 #CMD [ "php", "./artisan", "serve","--host=0.0.0.0", "--port=8080" ]
