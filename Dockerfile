@@ -5,8 +5,8 @@ ARG PHP_VER=7.4
 
 ENV APACHE_RUN_USER=www-data \
     APACHE_RUN_GROUP=www-data \
-    APACHE_DOCUMENT_ROOT=/var/www \
-    APACHE_EXTENSIONS="request rewrite"
+    APACHE_DOCUMENT_ROOT=/var/www/public \
+    APACHE_EXTENSIONS="request rewrite" \
     PHP_INI_MEMORY_LIMIT=1g \
     PHP_INI_UPLOAD_MAX_FILESIZE=1g \
     PHP_INI_POST_MAX_SIZE=1g \
