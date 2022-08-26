@@ -69,7 +69,7 @@ class WoKikppcController extends Controller
     public function generate_wokikppc()
     {
         $date = date('ymd');
-        $table = new TableEditor('.\doc\wow\WO' . $date . '.dbf');
+        $table = new TableEditor('doc\WO' . $date . '.dbf');
         $table->deleteRecord();
         $table
             ->pack() //remove deleted rows
@@ -88,10 +88,10 @@ class WoKikppcController extends Controller
         $path = public_path('doc');
         $date = date('ymd');
         $header = HeaderFactory::create(TableType::DBASE_III_PLUS_MEMO);
-        $filepath = ".\doc\wow\WO" . $date . ".dbf";
+        $filepath = $path . "\WO" . $date . ".dbf";
         // unlink($filepath);
         if (file_exists($filepath)) {
-            unlink(".\doc\wow\WO" . $date . ".dbf");
+            unlink($path . "\WO" . $date . ".dbf");
         }
         $tableCreator = new TableCreator($filepath, $header);
         $tableCreator
@@ -947,7 +947,7 @@ class WoKikppcController extends Controller
 
         $date = date('ymd');
         $table = new TableEditor(
-            '.\doc\wow\WO' . $date . '.dbf',
+            'doc\WO' . $date . '.dbf',
             [
                 'editMode' => TableEditor::EDIT_MODE_CLONE, //default
             ]
