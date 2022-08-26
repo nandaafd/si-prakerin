@@ -25,5 +25,5 @@ RUN sudo apt-get update -y \
 
 WORKDIR /var/www
 COPY --chown=www-data:www-data . /var/www
-RUN composer install
+RUN composer install && composer update
 #CMD [ "php", "./artisan", "serve","--host=0.0.0.0", "--port=8080" ]
