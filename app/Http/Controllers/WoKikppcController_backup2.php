@@ -18,69 +18,10 @@ use XBase\TableEditor;
 //     unlink($filepath);
 // }
 
+// Dynamic Date updated on 29 Agustus 2022 by Firman (Fix)
+
 class WoKikppcController extends Controller
 {
-
-    // public function index()
-    // {
-
-    //     $data_wo = WoKikppc::get_wo();
-    //     $data = [];
-    //     $data_detail_lusi = [];
-    //     foreach ($data_wo as $wo) {
-    //         $data_lusi = WoKikppc::get_lusi($wo->no_kik);
-
-    //         foreach ($data_lusi as $lusi) {
-    //             $data_detail_lusi[] = array(
-    //                 'Kategori' => $lusi->patt_cat_desc,
-    //                 'qty_kg' => $lusi->qty_kg,
-    //                 'NoUrut' => $lusi->no_urut,
-    //                 'Barcode' => $lusi->barcode,
-    //             );
-    //         }
-
-    //         $data_pakan = WoKikppc::get_pakan($wo->no_kik);
-    //         foreach ($data_pakan as $pakan) {
-    //             $get_detail_pakan[] = array(
-    //                 'qty_kg' => number_format($pakan->qty_kg, 2),
-    //                 'NoUrut' => $pakan->no_urut,
-    //                 'Barcode' => $pakan->barcode,
-    //             );
-    //         }
-
-
-    //         $data[] = array(
-    //             'TglKIK' => date('m/d/y', strtotime($wo->wow_date)),
-    //             'WOWNo' => $wo->no_kik,
-    //             'KDTMB' => $wo->kd_tmb,
-    //             'PJG' => $wo->length,
-    //             'NoPatrun' => $wo->kd_patrun,
-    //             'JMLbenang' => $wo->jml_lusi,
-    //             'NoBukti' => $wo->no_bukti,
-    //             'DetailLusi' => $data_detail_lusi,
-    //             'DetailPakan' => $get_detail_pakan,
-    //         );
-    //     }
-
-
-    //     return $data;
-    // }
-
-    // public function generate_wokikppc(Request $request)
-    // {
-    //     $tanggal = $request->wokikppc;
-
-    //     $date = date('ymd', strtotime($tanggal));
-    //     $table = new TableEditor('doc/WO' . $date . '.dbf');
-    //     $table->deleteRecord();
-    //     $table
-    //         ->pack() //remove deleted rows
-    //         ->save() //save changes
-    //         ->close();
-
-    //     return redirect('dbf_wokikppc');
-    // }
-
     public function dbf_wokikppc(Request $request)
     {
 
@@ -125,7 +66,7 @@ class WoKikppcController extends Controller
             ]))
             ->addColumn(new Column([
                 'name'   => 'NO_TAM',
-                'type'   => FieldType::NUMERIC,
+                'type'   => FieldType::CHAR,
                 'length' => 2,
             ]))
             ->addColumn(new Column([
@@ -957,6 +898,7 @@ class WoKikppcController extends Controller
         // $tanggal = $this->input->post('date');
         $tanggal = Session::get('tanggal');
         // dd($tanggal);
+        // dd($tanggal);
         // strtotime($tanggal)
         $param = date('Y-m-d', strtotime($tanggal));
         $date = date('ymd', strtotime($tanggal));
@@ -970,12 +912,14 @@ class WoKikppcController extends Controller
         // $param
 
         foreach ($get_data_wo as $row) {
+            $tam = $row->kd_tmb;
+            $t = (int)$tam;
 
             $record = $table->appendRecord();
             $record->set('TGL_KIK', date('m/d/y', strtotime($row->wow_date)));
             $record->set('NO_KIK', $row->no_kik);
             $record->set('NO_PATRUN', substr($row->kd_patrun, 7, 4));
-            $record->set('NO_TAM', $row->kd_tmb);
+            $record->set('NO_TAM', substr("0", 0, 2 - strlen($t)) . $t);
             $record->set('KODE_PROD', $row->prd_code);
             $record->set('PJG', $row->length);
             $record->set('JML_BNG', $row->jml_lusi);
@@ -1174,5 +1118,4 @@ class WoKikppcController extends Controller
             ->close();
         return redirect('/');
     }
-    // fix controller
 }

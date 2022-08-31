@@ -66,7 +66,7 @@ class WoKikppcController extends Controller
             ]))
             ->addColumn(new Column([
                 'name'   => 'NO_TAM',
-                'type'   => FieldType::NUMERIC,
+                'type'   => FieldType::CHAR,
                 'length' => 2,
             ]))
             ->addColumn(new Column([
@@ -912,12 +912,14 @@ class WoKikppcController extends Controller
         // $param
 
         foreach ($get_data_wo as $row) {
+            $tam = $row->kd_tmb;
+            $t = (int)$tam;
 
             $record = $table->appendRecord();
             $record->set('TGL_KIK', date('m/d/y', strtotime($row->wow_date)));
             $record->set('NO_KIK', $row->no_kik);
             $record->set('NO_PATRUN', substr($row->kd_patrun, 7, 4));
-            $record->set('NO_TAM', $row->kd_tmb);
+            $record->set('NO_TAM', substr("0", 0, 2 - strlen($t)) . $t);
             $record->set('KODE_PROD', $row->prd_code);
             $record->set('PJG', $row->length);
             $record->set('JML_BNG', $row->jml_lusi);
