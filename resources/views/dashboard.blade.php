@@ -32,28 +32,16 @@
                             </div>
                         </div>
                         <tr>
+                            {{-- Firman Edit on 31 Agustus 2022 --}}
                             <td>1</td>
-                            <td>Generate Data Siswa</td>
-                            <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione, quas?</td>
-                            <td>
-                              <a href="#" class="btn icon icon-left btn-success"><i class="bi bi-list"></i>
-                              Generate</a>
-                              {{-- /generate_siswa --}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
                             <td>Generate Data KIKPPC</td>
                             <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione, quas?</td>
                             <td>
                             <form action="{{ url('/dbf_wokikppc') }}">
-                                {{-- @csrf --}}
-                                {{-- <textarea id="wokikppc" name="wokikppc"></textarea> --}}
+                                @csrf
                                 <input type="hidden" id="wokikppc" name="wokikppc">
-                                {{-- <a href="{{ url('/dbf_wokikppc') }}" class="btn icon icon-left btn-success"><i class="bi bi-list"></i>Generate</a> --}}
                                 <button class="btn icon icon-left btn-success" type="submit"><i class="bi bi-list"></i> Generate </button>
                             </form>
-                              {{-- <button class="btn icon icon-left btn-success" onclick="gen_dbf_by_tanggal('dbf_wokikppc')"><i class="bi bi-list"></i> Generate </button> --}}
                             </td>
                         </tr>
                     {{-- </form> --}}
