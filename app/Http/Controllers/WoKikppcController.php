@@ -46,8 +46,7 @@ class WoKikppcController extends Controller
         $tableCreator
             ->addColumn(new Column([
                 'name'   => 'TGL_KIK',
-                'type'   => FieldType::DATE,
-                'length' => 8,
+                'type'   => FieldType::DATE
             ]))
             ->addColumn(new Column([
                 'name'   => 'NO_KIK',
@@ -911,12 +910,25 @@ class WoKikppcController extends Controller
         $get_data_wo = WoKikppc::get_wo($param);
         // $param
 
+        /*
+        function konv_tgl_to_dbf($tgl){
+        if(!empty($tgl)){
+            $tgl=explode("-",$tgl);
+            return $tgl[0].$tgl[1].$tgl[2];
+        }else{
+            return null;
+        }
+    }
+        */
+
         foreach ($get_data_wo as $row) {
             $tam = $row->kd_tmb;
             $t = (int)$tam;
 
             $record = $table->appendRecord();
-            $record->set('TGL_KIK', date('m/d/y', strtotime($row->wow_date)));
+            $tgl=explode("-",$row->wow_date);
+            // $record->set('TGL_KIK', date('d/m/y', strtotime($row->wow_date)));
+            $record->set('TGL_KIK',$tgl[0].$tgl[1].$tgl[2]);
             $record->set('NO_KIK', $row->no_kik);
             $record->set('NO_PATRUN', substr($row->kd_patrun, 7, 4));
             $record->set('NO_TAM', substr("0", 0, 2 - strlen($t)) . $t);
