@@ -25,21 +25,25 @@ class WoKikppcController extends Controller
     public function dbf_wokikppc(Request $request)
     {
 
-        $tanggal = $request->wokikppc;
+        $tanggal = $request->bulan2;
+        $tahun = $request->tahun2;
 
-        if (empty($tanggal)) {
-            $tanggal = date('ymd');
+        // dd($tanggal, $tahun);
+
+        if (empty($tanggal) && empty($tahun)) {
+            $tanggal = date('m');
+            $tahun = date('Y');
         }
 
         $path = public_path('doc');
-        $date = date('ymd', strtotime($tanggal));
+        // $date = date('ymd', strtotime($tanggal));
 
         // dd($date);
         $header = HeaderFactory::create(TableType::DBASE_III_PLUS_MEMO);
-        $filepath = $path . "/WO" . $date . ".dbf";
+        $filepath = $path . "/WO" . $tanggal . $tahun . ".dbf";
         // unlink($filepath);
         if (file_exists($filepath)) {
-            unlink($path . "/WO" . $date . ".dbf");
+            unlink($path . "/WO" . $tanggal . $tahun . ".dbf");
         }
         // chmod($path . "/WO" . $date . ".dbt", 0777);a
         $tableCreator = new TableCreator($filepath, $header);
@@ -887,48 +891,31 @@ class WoKikppcController extends Controller
             ->save();
 
         // $this->write_wokikppc($tanggal);
-        return redirect('write_wokikppc')->with(array('tanggal' => $tanggal));
+        return redirect('write_wokikppc')->with(array('bulan' => $tanggal, 'tahun' => $tahun));
     }
 
     public function write_wokikppc()
-    // $tgl
     {
-
-        // $tanggal = $this->input->post('date');
-        $tanggal = Session::get('tanggal');
-        // dd($tanggal);
-        // dd($tanggal);
-        // strtotime($tanggal)
-        $param = date('Y-m-d', strtotime($tanggal));
-        $date = date('ymd', strtotime($tanggal));
+        $bulan = Session::get('bulan');
+        $tahun = Session::get('tahun');
+        // $bulan = date('Y-m-d', strtotime($tanggal));
+        // $date = date('ymd', strtotime($tanggal));
         $table = new TableEditor(
-            'doc/WO' . $date . '.dbf',
+            'doc/WO' . $bulan . $tahun . '.dbf',
             [
                 'editMode' => TableEditor::EDIT_MODE_CLONE, //default
             ]
         );
-        $get_data_wo = WoKikppc::get_wo($param);
-        // $param
-
-        /*
-        function konv_tgl_to_dbf($tgl){
-        if(!empty($tgl)){
-            $tgl=explode("-",$tgl);
-            return $tgl[0].$tgl[1].$tgl[2];
-        }else{
-            return null;
-        }
-    }
-        */
+        $get_data_wo = WoKikppc::get_wo($bulan, $tahun);
 
         foreach ($get_data_wo as $row) {
             $tam = $row->kd_tmb;
             $t = (int)$tam;
 
             $record = $table->appendRecord();
-            $tgl=explode("-",$row->wow_date);
+            $tgl = explode("-", $row->wow_date);
             // $record->set('TGL_KIK', date('d/m/y', strtotime($row->wow_date)));
-            $record->set('TGL_KIK',$tgl[0].$tgl[1].$tgl[2]);
+            $record->set('TGL_KIK', $tgl[0] . $tgl[1] . $tgl[2]);
             $record->set('NO_KIK', $row->no_kik);
             $record->set('NO_PATRUN', substr($row->kd_patrun, 7, 4));
             $record->set('NO_TAM', substr("0", 0, 2 - strlen($t)) . $t);

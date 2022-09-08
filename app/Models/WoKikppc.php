@@ -11,7 +11,7 @@ class WoKikppc extends Model
     use HasFactory;
 
     // New Query
-    public function get_wo($param)
+    public function get_wo($bulan, $tahun)
     // $param
     {
         // SUBSTRING ( wow.kd_patrun, 8, 4 ) as kd_patrun,
@@ -33,7 +33,7 @@ class WoKikppc extends Model
             prod.work_order_weaving wow
         left join im_prd_master as a on prd_id = a.id
         left join prod.atm_pattern_detail apd on apd.pattern_id = wow.pattern_id
-        WHERE patt_cat_desc = 'LUSI' and wow.wow_date = '$param'
+        WHERE patt_cat_desc = 'LUSI' and EXTRACT(month from wow_date) = '$bulan' and EXTRACT(year from wow_date) = '$tahun'
         group by
                 apd.patt_cat_desc,
                 wow.wow_no,
