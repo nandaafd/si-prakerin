@@ -26,9 +26,43 @@
                     <tbody>
                         {{-- <form action="" id="form_date" method="post"> --}}
                         <div class="row">
-                            <div class="col-md-3">
+                            {{-- <div class="col-md-3">
                               <div class="form-group">
                                 <input type="date" class="validate[required] form-control" id="date" name="date" required/>
+                            </div> --}}
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select name="bulan" id="bulan" class="form-control" required>
+                                        <option value="" disabled selected>Pilih Bulan</option>
+                                        <option value="01">Januari</option>
+                                        <option value="02">Febuari</option>
+                                        <option value="03">Maret</option>
+                                        <option value="04">April</option>
+                                        <option value="05">Mei</option>
+                                        <option value="06">Juni</option>
+                                        <option value="07">Juli</option>
+                                        <option value="08">Agustus</option>
+                                        <option value="09">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">Desember</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <?php
+                                    $now=date('Y');
+                                    $ymin=$now-4;
+                                    echo "<select name='tahun' id='tahun' class=form-control required>";
+                                    echo "<option value='' disabled selected>Pilih Tahun</option>";
+                                    for($a=$now;$a>=$ymin;--$a)
+                                    {
+                                    echo "<option value='$a'>$a</option>";
+                                    }
+                                    echo "</select>";
+                                ?>
+                                </div>
                             </div>
                         </div>
                         <tr>
@@ -39,7 +73,8 @@
                             <td>
                             <form action="{{ url('/dbf_wokikppc') }}">
                                 @csrf
-                                <input type="hidden" id="wokikppc" name="wokikppc">
+                                <input type="hidden" id="bulan2" name="bulan2">
+                                <input type="hidden" id="tahun2" name="tahun2">
                                 <button class="btn icon icon-left btn-success" type="submit"><i class="bi bi-list"></i> Generate </button>
                             </form>
                             </td>
@@ -59,48 +94,18 @@
     <script>
         let table1 = document.querySelector('#table1');
         let dataTable = new simpleDatatables.DataTable(table1);
-    
-        // function gen_dbf_by_tanggal(params) {       
-        //     if(params === 'dbf_wokikppc'){
-        //     url = "{{ url('/dbf_wokikppc') }}";
-        //     }
-        //     var form_dt = $('#form_date').serialize();
-        //     var date_param = $('#date').val();
-        //     // var formData = new FormData();
-        //     // formData.append('tanggal', $('#date').val());
-        // console.log(date_param);
-        // $.ajax({
-        //     url: url,
-        //     data: {'tgl' : date_param, 
-        //     '_token' : "{{ csrf_token() }}"
-        //     },
-        //     dataType: 'json',
-        //     processData: false,
-        //     contentType: false,
-        //     type: 'GET',
-        //     success: function (data) {
-        //         console.log(data);
-        //         if(data.status===true){
-        //             alert("Berhasil dijalankan dan Sukses !");
-        //         }else{
-        //             alert("Ada Kesalahan Program!!");
-        //         }
-        //     },
-        //     error: function (jqXHR, textStatus, errorThrown, json)
-        //     {
-        //         console.log(textStatus);
-        //         alert("Gagal diupdate!");
-
-        //     }
-        // });
-        // }
     </script>
 
     <script>
-        let select = document.querySelector('#date');
-        let result = document.getElementById('wokikppc');
+        let select = document.querySelector('#bulan');
+        let select2 = document.querySelector('#tahun');
+        let result = document.getElementById('bulan2');
+        let result2 = document.getElementById('tahun2');
         select.addEventListener('change', function() {
             result.value = this.value;
+        });
+        select2.addEventListener('change', function() {
+            result2.value = this.value;
         });
     </script>
 @endpush
