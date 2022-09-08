@@ -40,10 +40,10 @@ class WoKikppcController extends Controller
 
         // dd($date);
         $header = HeaderFactory::create(TableType::DBASE_III_PLUS_MEMO);
-        $filepath = $path . "/WO" . $tanggal . $tahun . ".dbf";
+        $filepath = $path . "/WO" . $tahun . $tanggal . ".dbf";
         // unlink($filepath);
         if (file_exists($filepath)) {
-            unlink($path . "/WO" . $tanggal . $tahun . ".dbf");
+            unlink($path . "/WO" . $tahun . $tanggal . ".dbf");
         }
         // chmod($path . "/WO" . $date . ".dbt", 0777);a
         $tableCreator = new TableCreator($filepath, $header);
@@ -901,7 +901,7 @@ class WoKikppcController extends Controller
         // $bulan = date('Y-m-d', strtotime($tanggal));
         // $date = date('ymd', strtotime($tanggal));
         $table = new TableEditor(
-            'doc/WO' . $bulan . $tahun . '.dbf',
+            'doc/WO' . $tahun . $bulan . '.dbf',
             [
                 'editMode' => TableEditor::EDIT_MODE_CLONE, //default
             ]
