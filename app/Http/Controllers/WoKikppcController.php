@@ -912,6 +912,10 @@ class WoKikppcController extends Controller
             $tam = $row->kd_tmb;
             $t = (int)$tam;
 
+            $sisir = $row->no_sisir_fx;
+            $pick = $row->no_pick;
+            $konstruksi = $sisir * $pick;
+
             $record = $table->appendRecord();
             $tgl = explode("-", $row->wow_date);
             // $record->set('TGL_KIK', date('d/m/y', strtotime($row->wow_date)));
@@ -922,6 +926,8 @@ class WoKikppcController extends Controller
             $record->set('KODE_PROD', $row->prd_code);
             $record->set('PJG', $row->length);
             $record->set('JML_BNG', $row->jml_lusi);
+            $record->set('MOTIF', $row->motive_name);
+            $record->set('KONSTR', $konstruksi);
             $record->set('NO_BUKTI', $row->no_bukti);
 
             // Lusi
