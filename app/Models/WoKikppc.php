@@ -28,11 +28,16 @@ class WoKikppc extends Model
             a.prd_code, 
             apd.pattern_id, 
             sum(apd.qty_helai) as jml_lusi,
-            apd.patt_cat_desc
+            apd.patt_cat_desc,
+            ipm.motive_name,
+            mwse.no_sisir_fx,
+            mwse.no_pick
         from
             prod.work_order_weaving wow
         left join im_prd_master as a on prd_id = a.id
         left join prod.atm_pattern_detail apd on apd.pattern_id = wow.pattern_id
+        left join im_prd_motive ipm on wow.motive_id = ipm.id
+        left join ms_weaving_standard_erp2 mwse on mwse.id_prd = a.id
         WHERE patt_cat_desc = 'LUSI' and EXTRACT(month from wow_date) = '$bulan' and EXTRACT(year from wow_date) = '$tahun'
         group by
                 apd.patt_cat_desc,
@@ -44,7 +49,10 @@ class WoKikppc extends Model
                 wow.pattern_no,
                 wow.pattern_id,
                 a.prd_code,
-                apd.pattern_id");
+                apd.pattern_id,
+                ipm.motive_name,
+                mwse.no_sisir_fx,
+            	mwse.no_pick");
         return $get_wo;
     }
     // // -- WHERE wow.wow_date between '2022-07-25' and '2022-07-25'
