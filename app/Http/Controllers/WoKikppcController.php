@@ -927,7 +927,7 @@ class WoKikppcController extends Controller
             $record->set('PJG', $row->length);
             $record->set('JML_BNG', $row->jml_lusi);
             $record->set('MOTIF', $row->motive_name);
-            $record->set('KONSTR', $konstruksi);
+            $record->set('KONSTR', $sisir . 'x' . $pick);
             $record->set('NO_BUKTI', $row->no_bukti);
 
             // Lusi
