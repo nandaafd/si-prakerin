@@ -66,16 +66,18 @@ class WoKikppc extends Model
             apd.patt_cat_desc,
             apd.qty_kg,
             apd.no_urut,
-            ipmd.barcode
+            ipmd.barcode,
+            ipm.short_desc
         from
             prod.work_order_weaving wow
         left join prod.atm_pattern_detail apd on
             wow.pattern_id = apd.pattern_id
-        left join im_prd_master_detail ipmd on apd.rm_det_id = ipmd.id 
+        left join im_prd_master_detail ipmd on apd.rm_det_id = ipmd.id
+        left join im_prd_master ipm on ipm.id = ipmd.prd_id 
         where
             wow_no = '$wo'
             and apd.patt_cat_desc = 'LUSI'
-            group by ipmd.barcode,wow.wow_no, apd.patt_cat_desc, apd.qty_kg, apd.no_urut");
+            group by ipmd.barcode,wow.wow_no, apd.patt_cat_desc, apd.qty_kg, apd.no_urut, ipm.short_desc");
     }
 
     public function get_pakan($wo)
