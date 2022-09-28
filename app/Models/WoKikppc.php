@@ -19,7 +19,6 @@ class WoKikppc extends Model
         $get_wo = DB::connection('pgsql')->select("SELECT 
             wow.wow_no as no_kik,
             wow.wow_date,
-            wow.wow_date,
             wow.kd_patrun,
             wow.kd_tmb,
             wow.LENGTH,
@@ -67,17 +66,20 @@ class WoKikppc extends Model
             apd.qty_kg,
             apd.no_urut,
             ipmd.barcode,
-            ipm.short_desc
+            ipm.short_desc,
+            mwse.no_sisir_fx,
+            mwse.no_pick
         from
             prod.work_order_weaving wow
         left join prod.atm_pattern_detail apd on
             wow.pattern_id = apd.pattern_id
         left join im_prd_master_detail ipmd on apd.rm_det_id = ipmd.id
-        left join im_prd_master ipm on ipm.id = ipmd.prd_id 
+        left join im_prd_master ipm on ipm.id = ipmd.prd_id
+        left join ms_weaving_standard_erp2 mwse on mwse.id_prd = ipm.id 
         where
             wow_no = '$wo'
             and apd.patt_cat_desc = 'LUSI'
-            group by ipmd.barcode,wow.wow_no, apd.patt_cat_desc, apd.qty_kg, apd.no_urut, ipm.short_desc");
+            group by ipmd.barcode,wow.wow_no, apd.patt_cat_desc, apd.qty_kg, apd.no_urut, ipm.short_desc, mwse.no_sisir_fx, mwse.no_pick");
     }
 
     public function get_pakan($wo)
@@ -87,16 +89,18 @@ class WoKikppc extends Model
             wow.wow_no,
             sum(apd.qty_kg) as qty_kg,
             apd.no_urut,
-            ipmd.barcode
+            ipmd.barcode,
+            ipm.short_desc
         from
             prod.work_order_weaving wow
         left join prod.atm_pattern_detail apd on
             wow.pattern_id = apd.pattern_id
         left join im_prd_master_detail ipmd on apd.rm_det_id = ipmd.id 
+        left join im_prd_master ipm on ipm.id = ipmd.prd_id
         where
             wow_no = '$wo'
             and apd.patt_cat_desc in ('PAKAN','PAKAN JHT') 
-            group by ipmd.barcode,wow.wow_no, apd.no_urut ");
+            group by ipmd.barcode,wow.wow_no, apd.no_urut,ipm.short_desc ");
     }
 
     // tumpal
