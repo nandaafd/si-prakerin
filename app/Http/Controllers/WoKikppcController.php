@@ -926,13 +926,24 @@ class WoKikppcController extends Controller
             $record->set('PJG', $row->length);
             $record->set('JML_BNG', $row->jml_lusi);
             $record->set('MOTIF', $row->motive_name);
-            $record->set('KONSTR', $sisir . ' x ' . $pick);
             $record->set('NO_BUKTI', $row->no_bukti);
 
             // Lusi
             $data_lusi = WoKikppc::get_lusi($row->no_kik);
 
             foreach ($data_lusi as $lusi) {
+
+                $NamaBenangLus = $lusi->short_desc;
+                preg_match_all('!\d+!', $NamaBenangLus, $num);
+                $lus = 0;
+                $nilai1 = $num[0][0];
+                $nilai2 = $num[0][1] ?? 0;
+                if ($nilai2 != 0) {
+                    $lus = $nilai1 / $nilai2;
+                } else {
+                    $lus = $nilai1;
+                }
+
                 if ($lusi->no_urut == '1') {
                     $record->set('LUSI1', number_format($lusi->qty_kg, 2));
                     $record->set('KODE_BRG1', $lusi->barcode);
@@ -978,6 +989,18 @@ class WoKikppcController extends Controller
             // PAKAN
             $data_pakan = WoKikppc::get_pakan($row->no_kik);
             foreach ($data_pakan as $pakan) {
+
+                $NamaBenangPak = $lusi->short_desc;
+                preg_match_all('!\d+!', $NamaBenangPak, $num2);
+                $pak = 0;
+                $nilai3 = $num2[0][0];
+                $nilai4 = $num2[0][1] ?? 0;
+                if ($nilai4 != 0) {
+                    $pak = $nilai3 / $nilai4;
+                } else {
+                    $pak = $nilai3;
+                }
+
                 $qty_format = number_format($pakan->qty_kg, 2);
                 if ($pakan->no_urut == '1') {
                     $record->set('PAKAN1', $qty_format);
@@ -1113,6 +1136,8 @@ class WoKikppcController extends Controller
                 }
             }
             // End Sulur
+            $record->set('KONSTR', $lus . '/' . $sisir . '*' . $pak . '/' . $pick);
+
             $table
                 ->writeRecord($record);
         }
