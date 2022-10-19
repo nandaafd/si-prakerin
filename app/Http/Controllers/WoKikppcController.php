@@ -923,7 +923,7 @@ class WoKikppcController extends Controller
             $record->set('NO_PATRUN', substr($row->kd_patrun, 7, 4));
             $record->set('NO_TAM', substr("0", 0, 2 - strlen($t)) . $t);
             $record->set('KODE_PROD', $row->prd_code);
-            $record->set('PJG', $row->length);
+            $record->set('PJG', $row->pjg_pakan);
             $record->set('JML_BNG', $row->jml_lusi);
             $record->set('MOTIF', $row->motive_name);
             $record->set('NO_BUKTI', $row->no_bukti);
