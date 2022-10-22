@@ -912,8 +912,8 @@ class WoKikppcController extends Controller
             $tam = $row->kd_tmb;
             $t = (int)$tam;
 
-            $sisir = (int)$row->no_sisir_fx;
-            $pick = (int)$row->no_pick;
+            $sisir = (int)$row->no_sisir;
+            $pick = (int)$row->pick;
 
             $record = $table->appendRecord();
             $tgl = explode("-", $row->wow_date);
