@@ -29,14 +29,14 @@ class WoKikppc extends Model
             sum(apd.qty_helai) as jml_lusi,
             apd.patt_cat_desc,
             ipm.motive_name,
-            mwse.no_sisir_fx,
-            mwse.no_pick
+            mwse.no_sisir,
+            mwse.pick
         from
             prod.work_order_weaving wow
         left join im_prd_master as a on prd_id = a.id
         left join prod.atm_pattern_detail apd on apd.pattern_id = wow.pattern_id
         left join im_prd_motive ipm on wow.motive_id = ipm.id
-        left join ms_weaving_standard_erp2 mwse on mwse.id_prd = a.id
+        left join prod.ms_weaving_standard mwse on mwse.prd_id = a.id
         WHERE patt_cat_desc = 'LUSI' and EXTRACT(month from wow_date) = '$bulan' and EXTRACT(year from wow_date) = '$tahun'
         group by
                 apd.patt_cat_desc,
@@ -50,8 +50,8 @@ class WoKikppc extends Model
                 a.prd_code,
                 apd.pattern_id,
                 ipm.motive_name,
-                mwse.no_sisir_fx,
-            	mwse.no_pick");
+                mwse.no_sisir,
+            	mwse.pick");
         return $get_wo;
     }
     // // -- WHERE wow.wow_date between '2022-07-25' and '2022-07-25'
@@ -67,19 +67,19 @@ class WoKikppc extends Model
             apd.no_urut,
             ipmd.barcode,
             ipm.short_desc,
-            mwse.no_sisir_fx,
-            mwse.no_pick
+            mwse.no_sisir,
+            mwse.pick
         from
             prod.work_order_weaving wow
         left join prod.atm_pattern_detail apd on
             wow.pattern_id = apd.pattern_id
         left join im_prd_master_detail ipmd on apd.rm_det_id = ipmd.id
         left join im_prd_master ipm on ipm.id = ipmd.prd_id
-        left join ms_weaving_standard_erp2 mwse on mwse.id_prd = ipm.id 
+        left join prod.ms_weaving_standard mwse on mwse.prd_id = ipm.id 
         where
             wow_no = '$wo'
             and apd.patt_cat_desc = 'LUSI'
-            group by ipmd.barcode,wow.wow_no, apd.patt_cat_desc, apd.qty_kg, apd.no_urut, ipm.short_desc, mwse.no_sisir_fx, mwse.no_pick");
+            group by ipmd.barcode,wow.wow_no, apd.patt_cat_desc, apd.qty_kg, apd.no_urut, ipm.short_desc, mwse.no_sisir, mwse.pick");
     }
 
     public function get_pakan($wo)
