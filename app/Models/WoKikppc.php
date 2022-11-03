@@ -100,7 +100,7 @@ class WoKikppc extends Model
         where
             wow_no = '$wo'
             and apd.patt_cat_desc in ('PAKAN','PAKAN JHT') 
-            group by ipmd.barcode,wow.wow_no, apd.no_urut,ipm.short_desc ");
+            group by ipmd.barcode,wow.wow_no, apd.no_urut,ipm.short_desc");
     }
 
     // tumpal
