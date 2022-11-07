@@ -912,8 +912,8 @@ class WoKikppcController extends Controller
             $tam = $row->kd_tmb;
             $t = (int)$tam;
 
-            $sisir = (int)$row->no_sisir_fx;
-            $pick = (int)$row->no_pick;
+            $sisir = (int)$row->no_sisir;
+            $pick = (int)$row->pick;
 
             $record = $table->appendRecord();
             $tgl = explode("-", $row->wow_date);
@@ -923,7 +923,7 @@ class WoKikppcController extends Controller
             $record->set('NO_PATRUN', substr($row->kd_patrun, 7, 4));
             $record->set('NO_TAM', substr("0", 0, 2 - strlen($t)) . $t);
             $record->set('KODE_PROD', $row->prd_code);
-            $record->set('PJG', $row->length);
+            $record->set('PJG', $row->pjg_pakan);
             $record->set('JML_BNG', $row->jml_lusi);
             $record->set('MOTIF', $row->motive_name);
             $record->set('NO_BUKTI', $row->no_bukti);
@@ -935,10 +935,15 @@ class WoKikppcController extends Controller
 
                 $NamaBenangLus = $lusi->short_desc;
                 preg_match_all('!\d+!', $NamaBenangLus, $num);
+                preg_match_all('/DTY/', $NamaBenangLus, $str2);
                 $lus = 0;
                 $nilai1 = $num[0][0];
                 $nilai2 = $num[0][1] ?? 0;
-                if ($nilai2 != 0) {
+                $nilaix = $str2[0][0] ?? 0;
+
+                if ($nilaix == TRUE) {
+                    $lus = $nilai1;
+                } elseif ($nilai2 != 0) {
                     $lus = $nilai1 / $nilai2;
                 } else {
                     $lus = $nilai1;
@@ -990,12 +995,18 @@ class WoKikppcController extends Controller
             $data_pakan = WoKikppc::get_pakan($row->no_kik);
             foreach ($data_pakan as $pakan) {
 
-                $NamaBenangPak = $lusi->short_desc;
+                $NamaBenangPak = $pakan->short_desc;
                 preg_match_all('!\d+!', $NamaBenangPak, $num2);
+                preg_match_all('/DTY/', $NamaBenangPak, $str3);
+
                 $pak = 0;
                 $nilai3 = $num2[0][0];
                 $nilai4 = $num2[0][1] ?? 0;
-                if ($nilai4 != 0) {
+                $nilaiy = $str3[0][0] ?? 0;
+
+                if ($nilaiy == TRUE) {
+                    $pak = $nilai3;
+                } elseif ($nilai4 != 0) {
                     $pak = $nilai3 / $nilai4;
                 } else {
                     $pak = $nilai3;
