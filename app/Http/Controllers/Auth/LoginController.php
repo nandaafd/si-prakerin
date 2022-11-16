@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-
+use Auth;
 class LoginController extends Controller
 {
     /*
@@ -58,7 +58,11 @@ class LoginController extends Controller
         } else {
             return redirect()->route('login')
                             ->with('error', 'Email and Password are wrong');
-        }
-        
+        }    
+    }
+
+    public function logout() {
+        Auth::logout(); // logout user
+        return redirect(\URL::previous());
     }
 }
