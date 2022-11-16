@@ -40,10 +40,8 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-
-
+            
             @yield('content')
-
 
             <footer>
                 <div class="footer clearfix mb-0 text-muted">

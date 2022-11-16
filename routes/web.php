@@ -1,11 +1,7 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\WoKikppcController;
-use App\Models\WoKikppc;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\WoKikppcController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,20 +13,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return redirect('/login');
+});
 
-Route::get('/', [HomeController::class, 'index']);
-// Siswa
-Route::get('/generate_siswa', [SiswaController::class, 'generate_siswa']);
-Route::get('/generate_dbf', [SiswaController::class, 'generate_dbf']);
-Route::get('/write_dbf', [SiswaController::class, 'write_dbf']);
+Auth::routes(
+    [
+    'register' => false, // Register Routes...
+    'reset' => false, // Reset Password Routes...
+    'verify' => false, // Email Verification Routes...
+    ],
+);
 
-// WO Kikppc
-// Route::get('/WO', [WoKikppcController::class, 'index']);
-// Route::get('/WO2', [WoKikppcController::class, 'index2']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::get('/profile/setting', [App\Http\Controllers\ProfileController::class, 'setting_profile'])->name('setting_profile');
+Route::post('/profile/setting/store', [App\Http\Controllers\ProfileController::class, 'store_form_setting_profile'])->name('store_form_setting_profile');
 
-Route::get('/generate_wokikppc', [WoKikppcController::class, 'generate_wokikppc']);
-Route::get('/dbf_wokikppc', [WoKikppcController::class, 'dbf_wokikppc']);
-Route::get('/write_wokikppc', [WoKikppcController::class, 'write_wokikppc']);
+// Route::get('superadmin/home', [App\Http\Controllers\HomeController::class, 'superadminHome'])->name('superadmin.home')->middleware('role');
+// Route::get('adminopd/home', [App\Http\Controllers\HomeController::class, 'adminopdHome'])->name('adminopd.home')->middleware('role');
+// Route::get('assessor/home', [App\Http\Controllers\HomeController::class, 'assessorHome'])->name('assessor.home')->middleware('role');
+
+Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
+    Route::get('superadmin/home', [App\Http\Controllers\HomeController::class, 'superadminHome'])->name('superadmin.home');
+    Route::get('superadmin/dbf_wokikppc', [WoKikppcController::class, 'dbf_wokikppc']);
+    Route::get('superadmin/write_wokikppc', [WoKikppcController::class, 'write_wokikppc']);
+});
+
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home');
+    Route::get('admin/dbf_wokikppc', [WoKikppcController::class, 'dbf_wokikppc']);
+    Route::get('admin/write_wokikppc', [WoKikppcController::class, 'write_wokikppc']);
+});
+
+Route::group(['middleware' => ['auth', 'role:user']], function () {
+    Route::get('user/home', [App\Http\Controllers\HomeController::class, 'userHome'])->name('user.home');
+    Route::get('user/dbf_wokikppc', [WoKikppcController::class, 'dbf_wokikppc']);
+    Route::get('user/write_wokikppc', [WoKikppcController::class, 'write_wokikppc']);
+});
