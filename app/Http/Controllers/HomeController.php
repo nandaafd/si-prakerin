@@ -14,7 +14,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
+        
     }
 
     /**
@@ -34,7 +35,28 @@ class HomeController extends Controller
     }
 
     public function superadminHome() {
-        return view('dashboard');
+        // if (auth()->user()) {
+        //     return response()->json(['status_message' => 'Terautentikasi sebagai superadmin'], 200);
+        // }
+        // return view('dashboard');
+        // return response()->json(['status_message' => 'Tidak terautentikasi'], 401);
+        // $request->validate([
+        //     'email' => 'required|string|email',
+        //     'password' => 'required|string'
+        // ]);
+        
+        // $credentials = request(['email', 'password']);
+
+        if(auth()->user()) {
+            return response()->json([
+                'message' => 'Terautentikasi sebagai superadmin'
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);   
+        }
+
     }
 
     public function adminHome() {

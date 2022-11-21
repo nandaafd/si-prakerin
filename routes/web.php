@@ -53,3 +53,5 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('user/write_wokikppc', [WoKikppcController::class, 'write_wokikppc']);
     });
 });
+
+Route::get('/tes', 'App\Http\Controllers\TesController@tes')->name('tes');
