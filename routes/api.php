@@ -20,7 +20,7 @@ use App\Http\Controllers\WoKikppcController;
 //     return $request->user();
 // });
 Route::group(['middleware' => 'prevent-back-history'],function(){
-    Route::group(['prefix' => 'auth'], function() {
+    // Route::group(['prefix' => 'auth'], function() {
         // Route::get('tes', 'App\Http\Controllers\TesController@tes');
         Route::post('login', 'App\Http\Controllers\Auth\AuthController@login')->name('login');
         Route::post('register', 'App\Http\Controllers\Auth\AuthController@register');
@@ -37,5 +37,5 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
             Route::get('admin/write_wokikppc', [WoKikppcController::class, 'write_wokikppc']);
             Route::get('user/write_wokikppc', [WoKikppcController::class, 'write_wokikppc']);
         });
-    });
+    // });
 });
