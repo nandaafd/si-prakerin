@@ -56,11 +56,11 @@ class LoginController extends Controller
                 return redirect()->route('user.home');
             }
         } else {
-            // return redirect()->route('login')
-            //                 ->with('error', 'Email and Password are wrong');
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
+            return redirect()->route('login')
+                            ->with('error', 'Email and Password are wrong');
+            // return response()->json([
+            //     'message' => 'Unauthorized'
+            // ], 401);
         }    
     }
 

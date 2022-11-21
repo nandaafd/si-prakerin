@@ -21,9 +21,10 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         if(!Auth::attempt($credentials)) {
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);   
+            // return response()->json([
+            //     'message' => 'Unauthorized'
+            // ], 401);
+            return route('login');   
         }
         
         $user = $request->user();
@@ -47,15 +48,16 @@ class AuthController extends Controller
 
     public function register(Request $request) {
         $request->validate([
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
+            'name' => 'required|string',
+            // 'last_name' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string'
         ]);
         $user = new User;
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
+        // $user->first_name = $request->first_name;
+        $user->name = $request->name;
         $user->email = $request->email;
+        $user->role = $request->role;
         $user->password = bcrypt($request->password);
         $user->save();
         

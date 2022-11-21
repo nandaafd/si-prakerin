@@ -38,7 +38,6 @@ class HomeController extends Controller
         // if (auth()->user()) {
         //     return response()->json(['status_message' => 'Terautentikasi sebagai superadmin'], 200);
         // }
-        // return view('dashboard');
         // return response()->json(['status_message' => 'Tidak terautentikasi'], 401);
         // $request->validate([
         //     'email' => 'required|string|email',
@@ -47,25 +46,51 @@ class HomeController extends Controller
         
         // $credentials = request(['email', 'password']);
 
-        if(auth()->user()) {
-            return response()->json([
-                'message' => 'Terautentikasi sebagai superadmin'
-            ], 200);
+            // return view('dashboard');
+        if(Auth::user()->role == 'superadmin') {
+            return response()->view('dashboard')->setStatusCode(200);
+            // return response()->json([
+            //     'message' => 'Terautentikasi sebagai superadmin'
+            // ], 200);
         } else {
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);   
+            // return response()->json([
+            //     'message' => 'Unauthorized'
+            // ], 401);
+            return redirect('login')->setStatusCode(401);   
         }
 
     }
 
     public function adminHome() {
         // return view('admin.home');
-        return view('dashboard');
+        // return view('dashboard');
+        if(Auth::user()->role == 'admin') {
+            // return response()->json([
+            //     'message' => 'Terautentikasi sebagai admin'
+            // ], 200);
+            return response()->view('dashboard')->setStatusCode(200);
+        } else {
+            // return response()->json([
+            //     'message' => 'Unauthorized'
+            // ], 401);
+            return redirect('login')->setStatusCode(401);   
+        }
     }
 
     public function userHome() {
         // return view('user.home');
-        return view('dashboard');
+        // return view('dashboard');
+        if(Auth::user()->role == 'user') {
+            // return response()->json([
+            //     'message' => 'Terautentikasi sebagai superadmin'
+            // ], 200);
+            return response()->view('dashboard')->setStatusCode(200);
+        } else {
+            // return response()->json([
+            //     'message' => 'Unauthorized'
+            // ], 401);
+            // return route('/');
+            return redirect('login')->setStatusCode(401);   
+        }
     }
 }
