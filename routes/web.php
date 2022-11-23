@@ -54,4 +54,4 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     });
 });
 
-Route::get('/tes', 'App\Http\Controllers\TesController@tes')->name('tes');
+Route::get('/failedLogin', 'App\Http\Controllers\ErrorController@failedLogin')->name('failedLogin');

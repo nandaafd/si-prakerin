@@ -54,7 +54,8 @@ class LoginController extends Controller
             // return response()->json([
             //     'message' => 'Unauthorized'
             // ], 401);
-            return route('login');   
+            return redirect()->route('login')
+                            ->with('error', 'Email and Password are wrong');   
         }
         
         $user = $request->user();

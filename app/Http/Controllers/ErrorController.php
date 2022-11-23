@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TesController extends Controller
+class ErrorController extends Controller
 {
     //
-    public function tes() {
+    public function failedLogin() {
         // return response()->json([
         //         'message' => 'Unauthorized'
         //     ], 401);
