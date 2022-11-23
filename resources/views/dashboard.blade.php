@@ -1,11 +1,29 @@
 @extends('layout.main')
 
-
-
 @section('content')
-
-<div class="page-heading">
-    <h3>Bridge List</h3>
+<!-- <div class="page-heading">
+        <h3>Bridge List</h3>
+    </div> -->
+<div style="display:flex; flex-direction: row; justify-content: space-between;">
+    <div class="page-heading">
+        <h3>Bridge List</h3>
+    </div>
+    <div>
+        <p>{{ Auth::user()->name }}
+            (
+            <u>
+                <a href="{{ route('logout') }}"
+                    style="color:red"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"> {{ __('Logout') }}
+                </a>
+            </u>
+            )
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </p>
+    </div>
 </div>
 <div class="page-content">
     <section class="section">
@@ -71,7 +89,15 @@
                             <td>Generate Data KIKPPC</td>
                             <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione, quas?</td>
                             <td>
-                            <form action="{{ url('/dbf_wokikppc') }}">
+                                
+                            {{-- @if(Auth::superadmin())
+                            
+                            @endif --}}
+                            <?php
+                                $role = Auth::user()->role;
+                                Session::put('role', $role);
+                            ?>
+                            <form action="{{ url($role.'/dbf_wokikppc') }}" >
                                 @csrf
                                 <input type="hidden" id="bulan2" name="bulan2">
                                 <input type="hidden" id="tahun2" name="tahun2">
