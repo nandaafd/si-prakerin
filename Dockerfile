@@ -24,16 +24,16 @@ RUN sudo apt-get update -y \
     && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/cli/conf.d/ext-dbase.ini \
     && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/apache2/conf.d/ext-dbase.ini
 
-# WORKDIR /var/www
-# COPY --chown=docker:docker . /var/www
+WORKDIR /var/www
+COPY --chown=docker:docker . /var/www
 RUN sudo composer install  \
     && sudo composer update
 
 # RUN sudo composer require doctrine/dbal
 # RUN sudo apt-get -y install mysql-server mysql-client
-# RUN sudo composer require laravel/passport
+RUN sudo composer require laravel/passport
 # RUN sudo php ./artisan migrate
-# RUN sudo php ./artisan passport:install
+RUN sudo php ./artisan passport:install
 # RUN sudo php ./artisan db:seed --class=CreateUserSeeder
 RUN sudo php ./artisan passport:keys
 #CMD [ "php", "./artisan", "serve","--host=0.0.0.0", "--port=8080" ]
