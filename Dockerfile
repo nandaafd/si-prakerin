@@ -29,7 +29,7 @@ COPY --chown=docker:docker . /var/www
 RUN sudo composer install  \
     && sudo composer update 
 RUN sudo composer require doctrine/dbal
-RUN sudo apt-get install php-mysql
+RUN sudo apt-get install mysql-server mysql-client
 RUN sudo composer require laravel/passport
 RUN sudo php ./artisan migrate
 RUN sudo php ./artisan passport:install
