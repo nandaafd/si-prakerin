@@ -27,12 +27,13 @@ RUN sudo apt-get update -y \
 WORKDIR /var/www
 COPY --chown=docker:docker . /var/www
 RUN sudo composer install  \
-    && sudo composer update 
+    && sudo composer update
+
 # RUN sudo composer require doctrine/dbal
 # RUN sudo apt-get -y install mysql-server mysql-client
 # RUN sudo composer require laravel/passport
 # RUN sudo php ./artisan migrate
 # RUN sudo php ./artisan passport:install
 # RUN sudo php ./artisan db:seed --class=CreateUserSeeder
-
+RUN sudo php ./artisan passport:keys
 #CMD [ "php", "./artisan", "serve","--host=0.0.0.0", "--port=8080" ]
