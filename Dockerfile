@@ -24,8 +24,8 @@ RUN sudo apt-get update -y \
     && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/cli/conf.d/ext-dbase.ini \
     && echo "extension=dbase.so" |sudo tee  /etc/php/${PHP_VER}/apache2/conf.d/ext-dbase.ini
 
-WORKDIR /var/www
-COPY --chown=docker:docker . /var/www
+# WORKDIR /var/www
+# COPY --chown=docker:docker . /var/www
 RUN sudo composer install  \
     && sudo composer update
 
