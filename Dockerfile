@@ -26,11 +26,8 @@ RUN sudo apt-get update -y \
 
 WORKDIR /var/www
 COPY --chown=docker:docker . /var/www
-RUN sudo php ./artisan cache:clear
-RUN sudo php ./artisan config:clear
 RUN sudo composer install  \
     && sudo composer update 
-
 RUN sudo php ./artisan passport:install
 
 #CMD [ "php", "./artisan", "serve","--host=0.0.0.0", "--port=8080" ]
