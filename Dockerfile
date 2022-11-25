@@ -28,6 +28,7 @@ WORKDIR /var/www
 COPY --chown=docker:docker . /var/www
 RUN sudo composer install  \
     && sudo composer update 
+RUN sudo composer require doctrine/dbal
 RUN sudo php ./artisan passport:install
 
 #CMD [ "php", "./artisan", "serve","--host=0.0.0.0", "--port=8080" ]
