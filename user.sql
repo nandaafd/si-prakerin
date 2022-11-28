@@ -59,7 +59,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2016_06_01_000001_create_oauth_auth_codes_table', 1),
 (4, '2016_06_01_000002_create_oauth_access_tokens_table', 1),
 (5, '2016_06_01_000003_create_oauth_refresh_tokens_table', 1),
-(6, '2016_06_01_000004_create_oauth_clients_table', 1),
+-- (6, '2016_06_01_000004_create_oauth_clients_table', 1),
 (7, '2016_06_01_000005_create_oauth_personal_access_clients_table', 1),
 (8, '2019_08_19_000000_create_failed_jobs_table', 1),
 (9, '2019_12_14_000001_create_personal_access_tokens_table', 1);
@@ -112,29 +112,29 @@ CREATE TABLE `oauth_auth_codes` (
 -- Table structure for table `oauth_clients`
 --
 
-CREATE TABLE `oauth_clients` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `secret` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `redirect` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `personal_access_client` tinyint(1) NOT NULL,
-  `password_client` tinyint(1) NOT NULL,
-  `revoked` tinyint(1) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- CREATE TABLE `oauth_clients` (
+--   `id` bigint(20) UNSIGNED NOT NULL,
+--   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+--   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+--   `secret` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+--   `provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+--   `redirect` text COLLATE utf8mb4_unicode_ci NOT NULL,
+--   `personal_access_client` tinyint(1) NOT NULL,
+--   `password_client` tinyint(1) NOT NULL,
+--   `revoked` tinyint(1) NOT NULL,
+--   `created_at` timestamp NULL DEFAULT NULL,
+--   `updated_at` timestamp NULL DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `oauth_clients`
 --
 
-INSERT INTO `oauth_clients` (`id`, `user_id`, `name`, `secret`, `provider`, `redirect`, `personal_access_client`, `password_client`, `revoked`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'API_CENTRE Personal Access Client', 'fRviXums3iGPWYh79g69mC36YLPRKXjZl3jb8szu', NULL, 'http://localhost', 1, 0, 0, '2022-11-20 19:59:15', '2022-11-20 19:59:15'),
-(2, NULL, 'API_CENTRE Password Grant Client', '3jG8Yra3zm4dXi2wtcbf0NPbVclHAv6vqssAL6Mg', 'users', 'http://localhost', 0, 1, 0, '2022-11-20 19:59:15', '2022-11-20 19:59:15'),
-(3, NULL, 'API_CENTRE Personal Access Client', 'A4ALYUrWrt9WIEZ41KlCICjZIwojLamGFGaT5pwt', NULL, 'http://localhost', 1, 0, 0, '2022-11-21 00:15:31', '2022-11-21 00:15:31'),
-(4, NULL, 'API_CENTRE Password Grant Client', 'W0IcawUYZuQD7cfVy6Kdi4JO8lqe3CM1FGLcZMZ7', 'users', 'http://localhost', 0, 1, 0, '2022-11-21 00:15:31', '2022-11-21 00:15:31');
+-- INSERT INTO `oauth_clients` (`id`, `user_id`, `name`, `secret`, `provider`, `redirect`, `personal_access_client`, `password_client`, `revoked`, `created_at`, `updated_at`) VALUES
+-- (1, NULL, 'API_CENTRE Personal Access Client', 'fRviXums3iGPWYh79g69mC36YLPRKXjZl3jb8szu', NULL, 'http://localhost', 1, 0, 0, '2022-11-20 19:59:15', '2022-11-20 19:59:15'),
+-- (2, NULL, 'API_CENTRE Password Grant Client', '3jG8Yra3zm4dXi2wtcbf0NPbVclHAv6vqssAL6Mg', 'users', 'http://localhost', 0, 1, 0, '2022-11-20 19:59:15', '2022-11-20 19:59:15'),
+-- (3, NULL, 'API_CENTRE Personal Access Client', 'A4ALYUrWrt9WIEZ41KlCICjZIwojLamGFGaT5pwt', NULL, 'http://localhost', 1, 0, 0, '2022-11-21 00:15:31', '2022-11-21 00:15:31'),
+-- (4, NULL, 'API_CENTRE Password Grant Client', 'W0IcawUYZuQD7cfVy6Kdi4JO8lqe3CM1FGLcZMZ7', 'users', 'http://localhost', 0, 1, 0, '2022-11-21 00:15:31', '2022-11-21 00:15:31');
 
 -- --------------------------------------------------------
 
@@ -262,9 +262,9 @@ ALTER TABLE `oauth_auth_codes`
 --
 -- Indexes for table `oauth_clients`
 --
-ALTER TABLE `oauth_clients`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `oauth_clients_user_id_index` (`user_id`);
+-- ALTER TABLE `oauth_clients`
+--   ADD PRIMARY KEY (`id`),
+--   ADD KEY `oauth_clients_user_id_index` (`user_id`);
 
 --
 -- Indexes for table `oauth_personal_access_clients`
@@ -319,8 +319,8 @@ ALTER TABLE `migrations`
 --
 -- AUTO_INCREMENT for table `oauth_clients`
 --
-ALTER TABLE `oauth_clients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+-- ALTER TABLE `oauth_clients`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `oauth_personal_access_clients`
