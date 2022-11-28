@@ -27,6 +27,7 @@ RUN sudo apt-get update -y \
 
 WORKDIR /var/www
 COPY --chown=docker:docker . /var/www
+RUN sudo chown www-data:www-data storage/oauth-*.key
 RUN sudo composer install  \
     && sudo composer update
 
