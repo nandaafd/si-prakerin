@@ -39,8 +39,8 @@ RUN php artisan route:clear
 # RUN sudo php ./artisan migrate:fresh
 # RUN sudo php ./artisan db:seed --class=CreateUserSeeder
 # RUN sudo php artisan migrate
-RUN sudo composer require laravel/passport
-RUN sudo php artisan passport:install
-RUN sudo php artisan passport:keys
+# RUN sudo composer require laravel/passport
+# RUN sudo php artisan passport:install
+# RUN sudo php artisan passport:keys
 
 #CMD [ "php", "./artisan", "serve","--host=0.0.0.0", "--port=8080" ]
