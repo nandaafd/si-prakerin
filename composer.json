@@ -10,7 +10,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "hisamu/php-xbase": "^2.1",
         "laravel/framework": "^8.75",
-        "laravel/passport": "^10.4",
+        "laravel/passport": "10.4.1",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "tymon/jwt-auth": "dev-develop"
