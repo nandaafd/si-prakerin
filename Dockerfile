@@ -31,9 +31,9 @@ RUN sudo composer install  \
 
 # RUN sudo composer require doctrine/dbal
 # RUN sudo apt-get -y install mysql-server mysql-client
-RUN sudo composer require laravel/passport
-RUN sudo php ./artisan passport:install
 RUN sudo php ./artisan migrate:fresh
 RUN sudo php ./artisan db:seed --class=CreateUserSeeder
+RUN sudo composer require laravel/passport
+RUN sudo php ./artisan passport:install
 RUN sudo php ./artisan passport:keys
 #CMD [ "php", "./artisan", "serve","--host=0.0.0.0", "--port=8080" ]
