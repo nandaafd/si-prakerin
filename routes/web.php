@@ -30,7 +30,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         ],
     );
     
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     // Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
     // Route::get('/profile/setting', [App\Http\Controllers\ProfileController::class, 'setting_profile'])->name('setting_profile');
     // Route::post('/profile/setting/store', [App\Http\Controllers\ProfileController::class, 'store_form_setting_profile'])->name('store_form_setting_profile');
