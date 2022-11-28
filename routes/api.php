@@ -16,9 +16,9 @@ use App\Http\Controllers\Auth\AuthController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 Route::group(['middleware' => 'prevent-back-history'],function(){
     // Route::group(['prefix' => 'auth'], function() {
         // Route::get('tes', 'App\Http\Controllers\TesController@tes');
