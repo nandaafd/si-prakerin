@@ -30,6 +30,10 @@ COPY --chown=docker:docker . /var/www
 RUN sudo composer install  \
     && sudo composer update
 
+RUN php artisan cache:clear
+RUN php artisan view:clear
+RUN php artisan route:clear
+
 # RUN sudo composer require doctrine/dbal
 # RUN sudo apt-get -y install mysql-server mysql-client
 # RUN sudo php ./artisan migrate:fresh
