@@ -18,6 +18,7 @@ RUN sudo apt-get update -y \
     && sudo apt-get install -y \
     php${PHP_VER}-dev \
     php${PHP_VER}-pgsql \
+    php${PHP_VER}-mysql \
     pkg-config \
     && sudo pecl config-set php_ini /etc/php/${PHP_VER}/apache2/php.ini \
     && sudo pecl install dbase-7.1.1 \
