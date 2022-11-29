@@ -28,8 +28,8 @@ RUN sudo apt-get update -y \
 WORKDIR /var/www
 COPY --chown=docker:docker . /var/www
 
-RUN sudo composer install  \
-    && sudo composer update
+RUN composer install  \
+    && composer update
 
 RUN php artisan cache:clear
 RUN php artisan view:clear
