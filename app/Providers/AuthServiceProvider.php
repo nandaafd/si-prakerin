@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Date;
 use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Carbon\Carbon;
+use Nette\Utils\DateTime;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,8 +31,8 @@ class AuthServiceProvider extends ServiceProvider
         Passport::routes();
 
         //
-        Passport::tokensExpireIn(now()->addHours(24));
-        Passport::refreshTokensExpireIn(now()->addHours(24));
-        Passport::personalAccessTokensExpireIn(now()->addHours(24));
+        Passport::tokensExpireIn(new DateTime('9999-12-31'));
+        Passport::refreshTokensExpireIn(new DateTime('9999-12-31'));
+        Passport::personalAccessTokensExpireIn(new DateTime('9999-12-31'));
     }
 }
