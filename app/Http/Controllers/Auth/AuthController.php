@@ -8,7 +8,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
+use DateTime;
 class AuthController extends Controller
 {
     //
@@ -33,7 +33,7 @@ class AuthController extends Controller
         $token = $tokenResult->token;
 
         if($request->remember_me) {
-            $token->expires_at = Carbon::now()->addYears(10);
+            $token->expires_at = new DateTime('9999-12-31');
         }
 
         $token->save();
