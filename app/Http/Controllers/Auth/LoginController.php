@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
+use DateTime;
 class LoginController extends Controller
 {
     /*
@@ -63,7 +64,7 @@ class LoginController extends Controller
         $token = $tokenResult->token;
 
         if($request->remember_me) {
-            $token->expires_at = Carbon::now()->addWeeks(1);
+            $token->expires_at = new DateTime('9999-12-31');
         }
 
         $token->save();
