@@ -24,13 +24,13 @@ class WoKikppcController extends Controller
 {
     public function dbf_wokikppc(Request $request)
     {
-        $tanggal = $request->bulan2;
+        $bulan = $request->bulan2;
         $tahun = $request->tahun2;
 
         // dd($tanggal, $tahun);
 
-        if (empty($tanggal) && empty($tahun)) {
-            $tanggal = date('m');
+        if (empty($bulan) && empty($tahun)) {
+            $bulan = date('m');
             $tahun = date('Y');
         }
 
@@ -39,10 +39,10 @@ class WoKikppcController extends Controller
 
         // dd($date);
         $header = HeaderFactory::create(TableType::DBASE_III_PLUS_MEMO);
-        $filepath = $path . "/WO" . $tahun . $tanggal . ".dbf";
+        $filepath = $path . "/WO" . $tahun . $bulan . ".dbf";
         // unlink($filepath);
         if (file_exists($filepath)) {
-            unlink($path . "/WO" . $tahun . $tanggal . ".dbf");
+            unlink($path . "/WO" . $tahun . $bulan . ".dbf");
         }
         // chmod($path . "/WO" . $date . ".dbt", 0777);a
         $tableCreator = new TableCreator($filepath, $header);
@@ -891,7 +891,7 @@ class WoKikppcController extends Controller
 
         $role = Session::get('role');
         // $this->write_wokikppc($tanggal);
-        return redirect($role.'/write_wokikppc')->with(array('bulan' => $tanggal, 'tahun' => $tahun));
+        return redirect($role.'/write_wokikppc')->with(array('bulan' => $bulan, 'tahun' => $tahun));
     }
 
     public function write_wokikppc()
@@ -1156,6 +1156,8 @@ class WoKikppcController extends Controller
         $table
             ->save()
             ->close();
-        return redirect('/home');
+        // return redirect('/home');
+        // return redirect('/home')->with( [ 'message' => true ] )->setStatusCode(200);
+        return response()->json(true, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
     }
 }
