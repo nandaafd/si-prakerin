@@ -28,6 +28,8 @@ RUN sudo apt-get update -y \
 WORKDIR /var/www
 COPY --chown=docker:docker . /var/www
 
+RUN sudo chown -R docker:docker /var/www
+
 RUN composer install  \
     && composer update
 
