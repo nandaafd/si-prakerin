@@ -891,7 +891,7 @@ class WoKikppcController extends Controller
 
         $role = Session::get('role');
         // $this->write_wokikppc($tanggal);
-        return redirect($role.'/write_wokikppc')->with(array('bulan' => $tanggal, 'tahun' => $tahun));
+        return redirect($role . '/write_wokikppc')->with(array('bulan' => $tanggal, 'tahun' => $tahun));
     }
 
     public function write_wokikppc()
@@ -1156,6 +1156,6 @@ class WoKikppcController extends Controller
         $table
             ->save()
             ->close();
-        return redirect('/home');
+        return redirect('/');
     }
 }
