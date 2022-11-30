@@ -58,6 +58,51 @@ class WoKikppc extends Model
     // // -- WHERE wow.wow_date between '2022-07-25' and '2022-07-25'
     // where wow_no = 'Q8D5' 2022-08-20
 
+    public function get_wo_today($tanggal, $bulan, $tahun)
+    // $param
+    {
+        // SUBSTRING ( wow.kd_patrun, 8, 4 ) as kd_patrun,
+        // wow.wow_date = '2022-07-28'
+        // apd.pattern_id = wow.pattern_id
+        $get_wo = DB::connection('pgsql')->select("SELECT 
+            wow.wow_no as no_kik,
+            wow.wow_date,
+            wow.kd_patrun,
+            wow.kd_tmb,
+            wow.pjg_pakan,
+            wow.pattern_no as no_bukti,
+            wow.pattern_id,
+            a.prd_code, 
+            apd.pattern_id, 
+            sum(apd.qty_helai) as jml_lusi,
+            apd.patt_cat_desc,
+            ipm.motive_name,
+            mwse.no_sisir,
+            mwse.pick
+        from
+            prod.work_order_weaving wow
+        left join im_prd_master as a on prd_id = a.id
+        left join prod.atm_pattern_detail apd on apd.kd_patrun = wow.kd_patrun AND apd.kd_tmb = wow.kd_tmb
+        left join im_prd_motive ipm on wow.motive_id = ipm.id
+        left join prod.ms_weaving_standard mwse on wow.prd_id = mwse.prd_id and wow.motive_id = mwse.motive_id
+        WHERE patt_cat_desc = 'LUSI' and EXTRACT(day from wow_date) = '$tanggal' and EXTRACT(month from wow_date) = '$bulan' and EXTRACT(year from wow_date) = '$tahun'
+        group by
+                apd.patt_cat_desc,
+                wow.wow_no,
+                wow.wow_date,
+                wow.kd_patrun,
+                wow.kd_tmb,
+                wow.pjg_pakan,
+                wow.pattern_no,
+                wow.pattern_id,
+                a.prd_code,
+                apd.pattern_id,
+                ipm.motive_name,
+                mwse.no_sisir,
+            	mwse.pick");
+        return $get_wo;
+    }
+
     public function get_lusi($wo)
     {
         return DB::connection('pgsql')
