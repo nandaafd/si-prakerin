@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(RoutingUrlGenerator $url)
     {
-        if (env('APP_ENV') !== 'local') {
+        if (env('APP_ENV') !== 'production') {
             $url->forceScheme('https');
         }
     }
