@@ -24,13 +24,15 @@ class WoKikppcController extends Controller
 {
     public function dbf_wokikppc(Request $request)
     {
-        $tanggal = $request->bulan2;
+        $tanggal = '';
+        $bulan = $request->bulan2;
         $tahun = $request->tahun2;
 
         // dd($tanggal, $tahun);
 
-        if (empty($tanggal) && empty($tahun)) {
-            $tanggal = date('m');
+        if (empty($bulan) && empty($tahun)) {
+            $tanggal = date('d');
+            $bulan = date('m');
             $tahun = date('Y');
         }
 
@@ -39,10 +41,10 @@ class WoKikppcController extends Controller
 
         // dd($date);
         $header = HeaderFactory::create(TableType::DBASE_III_PLUS_MEMO);
-        $filepath = $path . "/WO" . $tahun . $tanggal . ".dbf";
+        $filepath = $path . "/WO" . $tahun . $bulan . ".dbf";
         // unlink($filepath);
         if (file_exists($filepath)) {
-            unlink($path . "/WO" . $tahun . $tanggal . ".dbf");
+            unlink($path . "/WO" . $tahun . $bulan . ".dbf");
         }
         // chmod($path . "/WO" . $date . ".dbt", 0777);a
         $tableCreator = new TableCreator($filepath, $header);
@@ -891,11 +893,12 @@ class WoKikppcController extends Controller
 
         $role = Session::get('role');
         // $this->write_wokikppc($tanggal);
-        return redirect($role.'/write_wokikppc')->with(array('bulan' => $tanggal, 'tahun' => $tahun));
+        return redirect($role.'/write_wokikppc')->with(array('tanggal' => $tanggal, 'bulan' => $bulan, 'tahun' => $tahun));
     }
 
     public function write_wokikppc()
     {
+        $tanggal = Session::get('tanggal');
         $bulan = Session::get('bulan');
         $tahun = Session::get('tahun');
         // $bulan = date('Y-m-d', strtotime($tanggal));
@@ -906,15 +909,18 @@ class WoKikppcController extends Controller
                 'editMode' => TableEditor::EDIT_MODE_CLONE, //default
             ]
         );
-        $get_data_wo = WoKikppc::get_wo($bulan, $tahun);
+        if($tanggal == '') {
+            $get_data_wo = WoKikppc::get_wo($bulan, $tahun);
+        } else {
+            $get_data_wo = WoKikppc::get_wo_today($tanggal, $bulan, $tahun);
+        }
 
         foreach ($get_data_wo as $row) {
             $tam = $row->kd_tmb;
             $t = (int)$tam;
 
-            $sisir = $row->no_sisir_fx;
-            $pick = $row->no_pick;
-            $konstruksi = $sisir * $pick;
+            $sisir = (int)$row->no_sisir;
+            $pick = (int)$row->pick;
 
             $record = $table->appendRecord();
             $tgl = explode("-", $row->wow_date);
@@ -924,16 +930,32 @@ class WoKikppcController extends Controller
             $record->set('NO_PATRUN', substr($row->kd_patrun, 7, 4));
             $record->set('NO_TAM', substr("0", 0, 2 - strlen($t)) . $t);
             $record->set('KODE_PROD', $row->prd_code);
-            $record->set('PJG', $row->length);
+            $record->set('PJG', $row->pjg_pakan);
             $record->set('JML_BNG', $row->jml_lusi);
             $record->set('MOTIF', $row->motive_name);
-            $record->set('KONSTR', $konstruksi);
             $record->set('NO_BUKTI', $row->no_bukti);
 
             // Lusi
             $data_lusi = WoKikppc::get_lusi($row->no_kik);
 
             foreach ($data_lusi as $lusi) {
+
+                $NamaBenangLus = $lusi->short_desc;
+                preg_match_all('!\d+!', $NamaBenangLus, $num);
+                preg_match_all('/DTY/', $NamaBenangLus, $str2);
+                $lus = 0;
+                $nilai1 = $num[0][0];
+                $nilai2 = $num[0][1] ?? 0;
+                $nilaix = $str2[0][0] ?? 0;
+
+                if ($nilaix == TRUE) {
+                    $lus = $nilai1;
+                } elseif ($nilai2 != 0) {
+                    $lus = $nilai1 / $nilai2;
+                } else {
+                    $lus = $nilai1;
+                }
+
                 if ($lusi->no_urut == '1') {
                     $record->set('LUSI1', number_format($lusi->qty_kg, 2));
                     $record->set('KODE_BRG1', $lusi->barcode);
@@ -979,6 +1001,24 @@ class WoKikppcController extends Controller
             // PAKAN
             $data_pakan = WoKikppc::get_pakan($row->no_kik);
             foreach ($data_pakan as $pakan) {
+
+                $NamaBenangPak = $pakan->short_desc;
+                preg_match_all('!\d+!', $NamaBenangPak, $num2);
+                preg_match_all('/DTY/', $NamaBenangPak, $str3);
+
+                $pak = 0;
+                $nilai3 = $num2[0][0];
+                $nilai4 = $num2[0][1] ?? 0;
+                $nilaiy = $str3[0][0] ?? 0;
+
+                if ($nilaiy == TRUE) {
+                    $pak = $nilai3;
+                } elseif ($nilai4 != 0) {
+                    $pak = $nilai3 / $nilai4;
+                } else {
+                    $pak = $nilai3;
+                }
+
                 $qty_format = number_format($pakan->qty_kg, 2);
                 if ($pakan->no_urut == '1') {
                     $record->set('PAKAN1', $qty_format);
@@ -1114,6 +1154,8 @@ class WoKikppcController extends Controller
                 }
             }
             // End Sulur
+            $record->set('KONSTR', $lus . '/' . $sisir . '*' . $pak . '/' . $pick);
+
             $table
                 ->writeRecord($record);
         }
@@ -1121,6 +1163,8 @@ class WoKikppcController extends Controller
         $table
             ->save()
             ->close();
-        return redirect('/home');
+        // return redirect('/home');
+        // return redirect('/home')->with( [ 'message' => true ] )->setStatusCode(200);
+        return response()->json(true, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
     }
 }

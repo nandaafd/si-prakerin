@@ -18,6 +18,7 @@ RUN sudo apt-get update -y \
     && sudo apt-get install -y \
     php${PHP_VER}-dev \
     php${PHP_VER}-pgsql \
+    php${PHP_VER}-mysql \
     pkg-config \
     && sudo pecl config-set php_ini /etc/php/${PHP_VER}/apache2/php.ini \
     && sudo pecl install dbase-7.1.1 \
@@ -26,6 +27,23 @@ RUN sudo apt-get update -y \
 
 WORKDIR /var/www
 COPY --chown=docker:docker . /var/www
-RUN sudo composer install  \
-    && sudo composer update
+
+RUN sudo chown -R docker:docker /var/www
+
+RUN composer install  \
+    && composer update
+
+RUN php artisan cache:clear
+RUN php artisan view:clear
+RUN php artisan route:clear
+
+# RUN sudo composer require doctrine/dbal
+# RUN sudo apt-get -y install mysql-server mysql-client
+# RUN sudo php ./artisan migrate:fresh
+# RUN sudo php ./artisan db:seed --class=CreateUserSeeder
+# RUN sudo php artisan migrate
+# RUN sudo composer require laravel/passport
+# RUN sudo php artisan passport:install
+# RUN sudo php artisan passport:keys
+
 #CMD [ "php", "./artisan", "serve","--host=0.0.0.0", "--port=8080" ]
