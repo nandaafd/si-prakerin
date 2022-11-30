@@ -24,12 +24,14 @@ class WoKikppcController extends Controller
 {
     public function dbf_wokikppc(Request $request)
     {
+        $tanggal = '';
         $bulan = $request->bulan2;
         $tahun = $request->tahun2;
 
         // dd($tanggal, $tahun);
 
         if (empty($bulan) && empty($tahun)) {
+            $tanggal = date('d');
             $bulan = date('m');
             $tahun = date('Y');
         }
@@ -891,11 +893,12 @@ class WoKikppcController extends Controller
 
         $role = Session::get('role');
         // $this->write_wokikppc($tanggal);
-        return redirect($role.'/write_wokikppc')->with(array('bulan' => $bulan, 'tahun' => $tahun));
+        return redirect($role.'/write_wokikppc')->with(array('tanggal' => $tanggal, 'bulan' => $bulan, 'tahun' => $tahun));
     }
 
     public function write_wokikppc()
     {
+        $tanggal = Session::get('tanggal');
         $bulan = Session::get('bulan');
         $tahun = Session::get('tahun');
         // $bulan = date('Y-m-d', strtotime($tanggal));
@@ -906,7 +909,11 @@ class WoKikppcController extends Controller
                 'editMode' => TableEditor::EDIT_MODE_CLONE, //default
             ]
         );
-        $get_data_wo = WoKikppc::get_wo($bulan, $tahun);
+        if($tanggal == '') {
+            $get_data_wo = WoKikppc::get_wo($bulan, $tahun);
+        } else {
+            $get_data_wo = WoKikppc::get_wo_today($tanggal, $bulan, $tahun);
+        }
 
         foreach ($get_data_wo as $row) {
             $tam = $row->kd_tmb;
