@@ -48,6 +48,7 @@
                               <div class="form-group">
                                 <input type="date" class="validate[required] form-control" id="date" name="date" required/>
                             </div> --}}
+                            <input type="hidden" id="role" name="role" value="{{ Auth::user()->role }}">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <select name="bulan" id="bulan" class="form-control" required>
@@ -87,22 +88,19 @@
                             {{-- Firman Edit on 31 Agustus 2022 --}}
                             <td>1</td>
                             <td>Generate Data KIKPPC</td>
-                            <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione, quas?</td>
+                            <td>Iki deskripsi</td>
                             <td>
                                 
-                            {{-- @if(Auth::superadmin())
-                            
-                            @endif --}}
                             <?php
                                 $role = Auth::user()->role;
                                 Session::put('role', $role);
                             ?>
-                            <form action="{{ url($role.'/dbf_wokikppc') }}" >
+                            {{-- <form action="{{ url($role.'/dbf_wokikppc') }}" >
                                 @csrf
                                 <input type="hidden" id="bulan2" name="bulan2">
                                 <input type="hidden" id="tahun2" name="tahun2">
-                                <button class="btn icon icon-left btn-success" type="submit"><i class="bi bi-list"></i> Generate </button>
-                            </form>
+                            </form> --}}
+                            <button class="btn icon icon-left btn-success" onclick="generate('dbf_wokikppc')" type="button"><i class="bi bi-list"></i> Generate </button>
                             </td>
                         </tr>
                     {{-- </form> --}}
@@ -123,15 +121,70 @@
     </script>
 
     <script>
-        let select = document.querySelector('#bulan');
-        let select2 = document.querySelector('#tahun');
-        let result = document.getElementById('bulan2');
-        let result2 = document.getElementById('tahun2');
-        select.addEventListener('change', function() {
-            result.value = this.value;
-        });
-        select2.addEventListener('change', function() {
-            result2.value = this.value;
-        });
+        // let select = document.querySelector('#bulan');
+        // let select2 = document.querySelector('#tahun');
+        // let result = document.getElementById('bulan2');
+        // let result2 = document.getElementById('tahun2');
+        // select.addEventListener('change', function() {
+        //     result.value = this.value;
+        // });
+        // select2.addEventListener('change', function() {
+        //     result2.value = this.value;
+        // });
+        
+
+        function generate(param) {
+            let bulan = $('#bulan').val();
+            let tahun = $('#tahun').val();
+            let role = $('#role').val();
+            let url = '';
+
+            if(param == 'dbf_wokikppc'){
+                url = 'dbf_wokikppc';
+            }
+
+            if(bulan == null || tahun == null){
+                alert('Bulan atau Tahun belum diisi!');
+            }
+
+            $.ajax({
+                url: url,
+                data: {
+                    bulan: bulan,
+                    tahun: tahun
+                },
+                processData: false,
+                contentType: false,
+                type: 'GET',
+                beforeSend: function(){
+                    Swal.fire({
+                        title: 'Loading',
+                        text: 'Mohon ditunggu',
+                        icon: 'info',
+                        showConfirmButton: false
+                    });
+                },
+                success: function (data) {
+                    console.log(data);
+
+                    if(data.status){
+                        Swal.fire('Berhasil',data.message,'success');
+                    }else{
+                        Swal.fire('Gagal!',data.message,'error');
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    console.log(textStatus);
+                    // $('.progress').removeClass('active');
+                    // $('#myModal').modal({backdrop: 'static', keyboard: false}, 'hide');
+                    // $('#myModal').modal('hide');
+
+                    // swal("Gagal diupdate!", "", "error");
+
+                }
+            });
+        }
     </script>
 @endpush
