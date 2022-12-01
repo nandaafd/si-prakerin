@@ -42,9 +42,7 @@ class WoKikppcController extends Controller
 
         $wokikppcRepository->createFile($filepath);
 
-        $result = $wokikppcRepository->write_wokikppc($tanggal, $bulan, $tahun);
-
-        return $result;
+        return $wokikppcRepository->write_wokikppc($tanggal, $bulan, $tahun);
     }
 
     
