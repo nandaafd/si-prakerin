@@ -95,11 +95,7 @@
                                 $role = Auth::user()->role;
                                 Session::put('role', $role);
                             ?>
-                            {{-- <form action="{{ url($role.'/dbf_wokikppc') }}" >
-                                @csrf
-                                <input type="hidden" id="bulan2" name="bulan2">
-                                <input type="hidden" id="tahun2" name="tahun2">
-                            </form> --}}
+
                             <button class="btn icon icon-left btn-success" onclick="generate('dbf_wokikppc')" type="button"><i class="bi bi-list"></i> Generate </button>
                             </td>
                         </tr>
@@ -121,17 +117,6 @@
     </script>
 
     <script>
-        // let select = document.querySelector('#bulan');
-        // let select2 = document.querySelector('#tahun');
-        // let result = document.getElementById('bulan2');
-        // let result2 = document.getElementById('tahun2');
-        // select.addEventListener('change', function() {
-        //     result.value = this.value;
-        // });
-        // select2.addEventListener('change', function() {
-        //     result2.value = this.value;
-        // });
-        
 
         function generate(param) {
             let bulan = $('#bulan').val();
@@ -141,10 +126,6 @@
 
             if(param == 'dbf_wokikppc'){
                 url = 'dbf_wokikppc';
-            }
-
-            if(bulan == null || tahun == null){
-                alert('Bulan atau Tahun belum diisi!');
             }
 
             $.ajax({
@@ -177,12 +158,6 @@
                 error: function (jqXHR, textStatus, errorThrown)
                 {
                     console.log(textStatus);
-                    // $('.progress').removeClass('active');
-                    // $('#myModal').modal({backdrop: 'static', keyboard: false}, 'hide');
-                    // $('#myModal').modal('hide');
-
-                    // swal("Gagal diupdate!", "", "error");
-
                 }
             });
         }

@@ -24,8 +24,8 @@ class WoKikppcController extends Controller
     {
 
         $tanggal = '';
-        $bulan = $request->bulan2;
-        $tahun = $request->tahun2;
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
 
         if (empty($bulan) && empty($tahun)) {
             $tanggal = date('d');
