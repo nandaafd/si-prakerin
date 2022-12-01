@@ -134,9 +134,7 @@
                     bulan: bulan,
                     tahun: tahun
                 },
-                processData: false,
-                contentType: false,
-                type: 'GET',
+                method: 'GET',
                 beforeSend: function(){
                     Swal.fire({
                         title: 'Loading',
