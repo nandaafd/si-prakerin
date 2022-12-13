@@ -2,7 +2,7 @@
   <div class="sidebar-header">
       <div class="d-flex justify-content-between">
           <div class="logo">
-              <a href="{{ url('/') }}">API CENTRE</a>
+              <a href="{{ url('/') }}">NAMA WEB</a>
           </div>
           <div class="toggler">
               <a href="#" class="sidebar-hide d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -16,7 +16,7 @@
               class="sidebar-item active">
               <a href="" class='sidebar-link'>
                   <i class="bi bi-list"></i>
-                  <span>Bridge List PGG</span>
+                  <span>Menu Website</span>
               </a>
               <ul class="submenu">
                   <li class="submenu-item active">

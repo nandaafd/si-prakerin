@@ -45,18 +45,15 @@ class LoginController extends Controller
         $input = $request->all();
 
         $request->validate([
-            'email' => 'required|string|email',
+            'username' => 'required|string',
             'password' => 'required|string'
         ]);
         
-        $credentials = request(['email', 'password']);
+        $credentials = request(['username', 'password']);
 
         if(!Auth::attempt($credentials)) {
-            // return response()->json([
-            //     'message' => 'Unauthorized'
-            // ], 401);
             return redirect()->route('login')
-                            ->with('error', 'Email and Password are wrong');   
+                            ->with('error', 'Username and Password are wrong');   
         }
         
         $user = $request->user();
@@ -69,15 +66,7 @@ class LoginController extends Controller
 
         $token->save();
         
-        // return response()->json([
-        //     'access_token' => $tokenResult->accessToken,
-        //     'token_type' => 'Bearerrrr',
-        //     'expires_at' => Carbon::parse(
-        //         $tokenResult->token->expires_at
-        //     )->toDateTimeString()
-        // ]);
-        // return redirect()->route('superadmin.home');    
-        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+        if (auth()->attempt(array('username' => $input['username'], 'password' => $input['password']))) {
             if (auth()->user()->role == 'superadmin') {
                 return redirect()->route('superadmin.home');
             } else if (auth()->user()->role == 'admin'){
@@ -87,10 +76,7 @@ class LoginController extends Controller
             }
         } else {
             return redirect()->route('login')
-                            ->with('error', 'Email and Password are wrong');
-            // return response()->json([
-            //     'message' => 'Unauthorized'
-            // ], 401);
+                    ->with('error', 'Usernae and Password are wrong');
         }
     }
 

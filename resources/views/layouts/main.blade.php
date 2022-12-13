@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? 'PGG - CENTRE' }}</title>
+    <title>{{ $title ?? 'Website' }}</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.css') }}">
@@ -21,12 +21,6 @@
     <link rel="stylesheet" href="{{ asset('/assets/vendors/simple-datatables/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/vendors/sweetalert2/sweetalert2.min.css') }}">
 
-
-    {{-- <style>
-        body{
-            background-color: var(--bs-body-bg);
-        }
-    </style> --}}
     @stack('css')
 </head>
 
