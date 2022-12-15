@@ -1,14 +1,20 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WoKikppcController;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/portal', function () {
+    return view('portal');
+});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/register', function () {
+    return view('auth.register');
+});
+Route::get('/login', function () {
+    return view('auth.login');
 });
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
@@ -35,3 +41,4 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 });
 
 Route::get('/failedLogin', 'App\Http\Controllers\ErrorController@failedLogin')->name('failedLogin');
+?>

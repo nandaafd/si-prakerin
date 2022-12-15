@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+:root{
+  --main-color: #6BE4D8;
+}
+*{
+  margin: 0;
+  position: relative;
+}
+body{
+  background-color: #f1fffe;
+  animation: fadeInAnimation ease 2.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+   }
+}
+/* gambar sarung samping kanan */
+.side{
+  max-height: 100%;
+  z-index: 1;
+  margin-left: 110px;
+}
+
+/* gambar karakter welcome */
+.welcome{
+  z-index: 2;
+  max-width: 60%;
+  animation: welcome ease 4s;
+}
+@keyframes welcome {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+   }
+}
+.overflow-hidden{
+  overflow: hidden;
+}
+
+/* logo behaestex */
+.logobtx{
+  z-index: 3;
+  padding: 0;
+  margin-top: 30px;
+  margin-bottom: 0;
+  max-width: 40%;
+  animation: logobtx ease 1.5s;
+}
+@keyframes logobtx {
+  0%{top:-100px;}
+  100%{top: 0;}
+  
+}
+
+
+h1{
+  font-family: 'Poppins','sans-serif';
+  font-weight: 700;
+  font-size: 40px;
+  z-index: 4;
+  animation: h1 ease 2s;
+}
+@keyframes h1 {
+  0%{
+    left: 300px;
+  }
+  100%{ left: 0px;
+
+  }
+  
+}
+h2{
+  font-family: 'Poppins','sans-serif';
+  font-size: 35px;
+  font-weight: 700;
+  color: var(--main-color);
+  animation: h2 ease 2s;
+}
+@keyframes h2 {
+  0%{right: 300px;}
+  100%{right: 0px;}
+  
+}
+p{
+  font-family: 'Poppins','sans-serif';
+  width: 70%;
+  margin: 30px;
+  font-weight: 500;
+  font-size: 1.7rem;
+  padding-top: 0%;
+}
+span{
+  font-weight: 600;
+}
+.btn{
+  display: inline-block;
+  margin-bottom: 35px;
+  background:var(--main-color);
+  color:#fff;
+  cursor: pointer;
+  font-size: 1.7rem;
+}
+.btn:hover{
+  border: 1px solid black;
+
+}
+/* elemen dalam footer */
+h5{
+  width: 300px;
+  top: 5px;
+  color: rgb(37, 122, 80);
+  font-size: 10px;
+}
+.office{
+  grid-column: 1/2;
+}
+.phone{
+  grid-column: 2/3;
+
+}
+.email{
+  grid-column: 3/4;
+}
+.footer > div {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+ ul li {
+  font-family: 'Poppins','Sans-serif';
+  font-size: 10px;
+  list-style-type: none;
+  padding-top: 5px;
+  color: rgb(37, 122, 80);
+  top: 5px;
+}
+
+
+
+/* media screen */
+@media screen and (min-width: 768px) {
+ 
+  .side{
+    height: 100%;
+  }
+  h1{
+    font-size: 36px;
+  }
+  h2{
+    font-size: 32px;
+  }
+
+  /* footer */
+  .footer{
+    background-color: #CCF5F1;
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    justify-content: center;
+
+  }
+}
+
+@media screen and (max-width: 425px) {
+  p{
+    width: 85%;
+    font-size: 12px;
+    text-align: justify;
+  }
+  h1{
+    font-size: 28px;
+  }
+  h2{
+    font-size: 24px;
+  }
+
+  .footer{
+    background-color: #CCF5F1;
+    margin-top: 100px;
+    padding: 10px;
+    width: 100%;
+    height: 80  px;  
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+  
+  }
+  .side{
+    display: none;
+  }
+  .welcome{
+    margin-top: 0px;
+  }
+}
+
+@media only screen and (max-width:1024px){
+  .side{
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (max-width:1440px){
+  .side{
+    margin-left: 230px;
+  }
+ 
+}
+@media only screen and (min-width:1441px){
+  p{
+    width: 85%;
+    font-size: 40px;
+    text-align: justify;
+  }
+  h1{
+    font-size: 72px;
+  }
+  h2{
+    font-size: 58px;
+  }
+
+  .footer{
+    background-color: #CCF5F1;
+    padding: 10px;
+    width: 100%;
+    height: 150px;  
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+  
+  }
+  .side{
+    height: 100%;
+    margin-left: 290px;
+  }
+  .welcome{
+    margin-top: 0px;
+  }
+  ul li {
+    font-family: 'Poppins','Sans-serif';
+    font-size: 24px;
+    list-style-type: none;
+    padding-top: 5px;
+    color: rgb(37, 122, 80);
+  }
+  h5{
+    width: 650px;
+    color: rgb(37, 122, 80);
+    font-size: 24px;
+  }
+}
+
+

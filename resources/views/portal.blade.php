@@ -32,7 +32,7 @@
         <div class="box">
         <a href="https://bit.ly/zoom-btx" target="_blank">
             <img src="{{('images/ikon3.png')}}" alt="">
-            <h3>Sewa Zoom</h3>
+            <h3>Daftar Zoom</h3>
             </a>
         </div>
 
@@ -44,7 +44,7 @@
         </div>
 
         <div class="box">
-        <a href="https://helpdesk.behaestex.co.id/">
+        <a href="https://helpdesk.behaestex.co.id/" target="_blank">
             <img src="{{('images/ikon6.png')}}" alt="">
             <h3>Helpdesk</h3>
             </a>

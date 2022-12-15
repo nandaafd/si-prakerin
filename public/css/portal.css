@@ -1,0 +1,396 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+:root{
+    --main-color:#3cada2;
+}
+
+*{
+    font-family:'Poppins','sans-serif' ;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+    line-height: 1.5;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body{
+    background: #e3fffe;
+    padding-left: 30rem;
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}
+
+section{
+    padding:1rem 5%;
+    min-height: 100vh;
+}
+
+.heading{
+    font-size: 4rem;
+    color:#111;
+    text-transform: uppercase;
+    position: relative;
+    animation-name: heading;
+    animation-duration: 1.5s;
+    position: relative;
+}
+
+.heading span{
+    color:var(--main-color);
+}
+@keyframes heading{
+    0%   { left:-150px;}
+    100% { left:0px;}
+}
+.behaestex{
+    margin-bottom: 2rem;
+    animation-name: headingbtx;
+    animation-duration: 2.5s;
+    position: relative;
+}
+@keyframes headingbtx{
+    0%   { left:-150px;}
+    100% { left:0px;}
+}
+.behaestex span{
+    font-size: 2rem;
+    color:black;
+    padding-bottom: 1rem;
+}
+.btn{
+    display: inline-block;
+    float: left;
+    margin-top: 1rem;
+    background:var(--main-color);
+    color:#fff;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: .2rem;
+}
+
+
+#login{
+    margin-right: 1rem;
+    padding: .7rem 2rem;
+    font-size: 1rem;
+}
+#login:hover{
+    background:#111;
+    color:#fff;
+    letter-spacing: normal;
+}
+#register{
+    margin-right: 1rem;
+    padding: .5rem .8rem;
+    background-color: transparent;
+    font-size: 1rem;
+    color: var(--main-color);
+    border: .2rem solid var(--main-color);
+}
+#register:hover{
+    background:#111;
+    padding:.7rem .9rem;
+    color:#fff;
+    border: none;
+    letter-spacing: normal;
+}
+
+
+
+
+header{
+    position: fixed;
+    top:0; left:0; bottom:0;
+    background: #6BE4D8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    flex-flow: column;
+    padding:8rem 2rem;
+    width:30rem;
+    text-align: center;
+}
+
+header .logo{
+    color:#fff;
+    font-size: 3rem;
+    font-weight: bolder;
+    font-family: 'Poppins','sans-serif';
+}
+
+header .logo span{
+    text-transform: uppercase;
+    color:var(--main-color);
+}
+
+header .navbar a{
+    display: block;
+    font-size: 1.5rem;
+    color:#fff;
+    margin:2rem 0;
+}
+
+header .navbar a:hover{
+    letter-spacing: .2rem;
+    color:var(--main-color);
+}
+
+header .follow a{
+    font-size: 2.5rem;
+    color:#fff;
+    margin:0 .7rem;
+}
+
+header .follow a:hover{
+    color:var(--main-color);
+}
+header img{
+    width: 100px;
+}
+#menu-bars{
+    position: fixed;
+    top:1rem; left: 1rem;
+    z-index: 10000;
+    background:var(--main-color);
+    color:#fff;
+    border-radius: .5rem;
+    padding:1rem 1.5rem;
+    font-size: 3rem;
+    cursor:pointer;
+    display: none;
+}
+
+.cursor-1{
+    position: absolute;
+    top:0; left:0;
+    height:1rem; width:1rem;
+    background: var(--main-color);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 10000;
+}
+
+.cursor-1.active{
+    height:7rem;
+    width:7rem;
+    opacity: .3;
+}
+
+.cursor-2{
+    position: absolute;
+    top:0; left:0;
+    height:4rem; width:4rem;
+    border:.1rem solid var(--main-color);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 10000;
+    transition: .3s linear;
+}
+
+.cursor-2.active{
+    display: none;
+}
+
+
+
+.service .box-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:1.5rem;
+}
+
+.service .box-container .box{
+    flex:1 1 30rem;
+    text-align: center;
+    padding:2rem;
+    background:#fff;
+    border-radius: .5rem;
+    box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+}
+.service .box-container .box:hover{
+    flex:1 1 30rem;
+    background:#fff5c6;
+}
+
+.service .box-container .box h3{
+    color:#444;
+    font-size: 1.6rem;
+    padding-top: 1rem;
+}
+.service .box-container .box img{
+   animation-name: ikon;
+   animation-duration: 1.5s;
+
+}
+@keyframes ikon {
+    0%{
+        opacity: 100%;
+        width: 0;
+    }
+    25%{
+        width: 17.6rem;
+        opacity: 0;
+    }
+    50%{
+    width: 20rem;
+    }
+    75%{
+    width: 17.5rem;
+    }
+    100%{
+
+    }
+}
+
+.footer{
+    margin-top: 2rem;
+    font-size: 2rem;
+    padding:2.5rem;
+    text-align: center;
+    color:#666;
+    background: #FFF0A1 ;
+}
+.footer span{
+    color:var(--main-color);
+}
+
+
+
+@media (min-width: 1024px) {
+    .service{
+        margin-top: 30px;
+    }
+    .heading{
+        display: none;
+    }
+    .behaestex{
+        display: none;
+    }
+}
+/* media queries  */
+@media (max-width:991px){
+
+    html{
+        font-size: 55%;
+    }
+    
+    body{
+        padding: 0;
+    }
+    h1{
+        text-align: center;
+    }
+
+    #menu-bars{
+        display: initial;
+    }
+
+    header{
+        left:-120%;
+    }
+
+    header.active{
+        left:0%;
+    }
+
+    .cursor-1,
+    .cursor-2{
+        display: none;
+    }
+    .service .box-container .box img{
+        animation-name: ikon;
+        animation-duration: 1.5s;
+ 
+    }
+        @keyframes ikon {
+            0%{
+                opacity: 100%;
+            }
+            25%{
+                width: 20rem;
+                opacity: 0;
+            }
+            50%{
+            width: 22rem;
+            }
+            75%{
+            width: 20rem;
+            }
+            100%{
+        
+            }
+        }
+
+}
+
+@media (max-width:450px){
+
+    html{
+        font-size: 50%;
+    }
+
+    header{
+        width:100%;
+    }
+
+    h1{
+        text-align: center;
+    }
+    .service .box-container .box{
+        flex:1 1 10rem;
+        padding:1rem;
+        /* width: 35%; */
+
+    }
+    
+    .service .box-container .box h3{
+        font-size: 1.5rem;
+        padding-top: 1rem;
+    }
+    
+    .service .box-container .box img{
+        width: 15rem;
+        animation-name: ikon;
+        animation-duration: 1.5s;
+ 
+    }
+        @keyframes ikon {
+            0%{
+        
+            }
+            50%{
+            width: 18rem;
+            }
+            100%{
+        
+            }
+        }
+        .service .box-container .box:hover{
+            flex:1 1 10rem;
+            padding:1rem;
+            /* width: 35%; */
+    
+        }
+
+}

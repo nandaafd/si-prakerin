@@ -1,84 +1,53 @@
-@extends('layouts.app')
+@extends('layouts.signin')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">Username</label>
-
-                            <div class="col-md-6">
-                                <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-
-                                @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+<div id="auth">
+        
+    <div class="row h-100">
+        <div class="col-lg-5 col-12">
+            <div id="auth-left">
+                <h1 class="auth-title">Log in.</h1>
+                <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
+    
+                <form action="index.html" method="POST">
+                    <div class="form-group position-relative has-icon-left mb-4">
+                        <input type="text" class="form-control form-control-xl" placeholder="Username">
+                        <div class="form-control-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                              </svg>
                         </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                
-                            </div>
+                    </div>
+                    <div class="form-group position-relative has-icon-left mb-4">
+                        <input type="password" class="form-control form-control-xl" placeholder="Password">
+                        <div class="form-control-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                              </svg>
                         </div>
-                        
-                        @if(session()->has('error'))
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                    <div class = "alert alert-danger alert-dismissible">
-                                        <button type = "button" class = "btn-close" data-bs-dismiss = "alert" id = "close"></button>
-                                        {{ session()->get('error') }}
-                                    </div>
-                                </div>
-                            </div>
-                                @endif
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+                    <div class="form-check form-check-lg d-flex align-items-end">
+                        <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label text-gray-500 fs-6" for="flexCheckDefault" id="label" style="font-size: 1rem">
+                            Keep me logged in
+                        </label>
+                    </div>
+                    <button class="btn btn-primary btn-block shadow-lg mt-4" style="height: 3rem;">Log in</button>
+                </form>
+                <div class="text-center mt-5 text-lg fs-4">
+                    <p class="text-gray-600 subtittle" id="">Don't have an account? <a href="http://127.0.0.1:8000/register" class="font-bold">Sign
+                            up</a>.</p>
+                    <p><a class="font-bold" href="auth-forgot-password.html">Forgot password?</a>.</p>
                 </div>
             </div>
         </div>
+        <div class="col-lg-7 d-none d-lg-block">
+            <div id="auth-right" style="background:url('/images/sarung.png');height:100%;">
+                
+            </div>
+        </div>
     </div>
-</div>
+    
+        </div>
 @endsection
