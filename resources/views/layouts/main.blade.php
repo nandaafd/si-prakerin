@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('/assets/vendors/fontawesome/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/vendors/simple-datatables/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/vendors/sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sewazoom.css') }}">
 
     @stack('css')
 </head>

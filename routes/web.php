@@ -1,6 +1,8 @@
 <?php
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 
 Route::get('/', function () {
@@ -15,6 +17,9 @@ Route::get('/register', function () {
 });
 Route::get('/login', function () {
     return view('auth.login');
+});
+Route::get('/sewazoom', function () {
+    return view('fitur.sewazoom');
 });
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
