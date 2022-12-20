@@ -111,26 +111,28 @@ section{
     border: none;
     letter-spacing: normal;
 }
-
+.button{
+    margin-left: 6rem;
+}
 
 
 
 header{
     position: fixed;
     top:0; left:0; bottom:0;
-    background: #6BE4D8;
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: space-between;
     z-index: 1000;
     flex-flow: column;
-    padding:8rem 2rem;
+    padding:2rem .1rem;
     width:30rem;
     text-align: center;
 }
 
 header .logo{
-    color:#fff;
+    color:rgb(0, 0, 0);
     font-size: 3rem;
     font-weight: bolder;
     font-family: 'Poppins','sans-serif';
@@ -147,23 +149,32 @@ header .navbar a{
     color:#fff;
     margin:2rem 0;
 }
-
-header .navbar a:hover{
-    letter-spacing: .2rem;
+header .navbar .sidebar-link{
+    display: block;
+    font-size: 1.5rem;
+    color:rgb(0, 0, 0);
+    padding: 1rem 8rem;
+}
+header .navbar .sidebar-link:hover{
     color:var(--main-color);
+    background-color: #fff5c6;
 }
 
-header .follow a{
-    font-size: 2.5rem;
-    color:#fff;
-    margin:0 .7rem;
-}
-
-header .follow a:hover{
-    color:var(--main-color);
-}
 header img{
     width: 100px;
+
+}
+header ul{
+    margin-bottom: 10rem;
+}
+header ul li{
+    list-style-type: none; 
+}
+header ul li span{
+    margin-right: 2.2rem; 
+}
+header ul li svg{
+    margin-right: 1rem;
 }
 #menu-bars{
     position: fixed;

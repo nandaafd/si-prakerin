@@ -1,6 +1,6 @@
 h1{
     color: black;
-    margin-top: -30px;
+
 }
 
 
@@ -24,3 +24,24 @@ i{
 #btn-sewazoom:hover{
     background-color: black;
 }
+
+#exampleModal h1{
+    margin-top: .5rem;
+}
+
+.table{
+    margin-left: 1rem;
+    width: 98%;
+}
+.btn-primary{
+    background-color: #3CADA2;
+    border: none;
+}
+/* .home span{
+    font-size: 1rem;
+}
+.home {
+    margin-top: 1.5rem;
+    margin-left: 1.3rem;
+
+} */

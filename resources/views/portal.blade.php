@@ -30,7 +30,7 @@
         </div>
 
         <div class="box">
-        <a href="https://bit.ly/zoom-btx" target="_blank">
+        <a href="{{asset('/sewazoom')}}" target="">
             <img src="{{('images/ikon3.png')}}" alt="">
             <h3>Daftar Zoom</h3>
             </a>
