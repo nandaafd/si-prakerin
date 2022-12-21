@@ -1,22 +1,10 @@
-h1{
-    color: black;
 
-}
-
-
-.logo a{
-    color: #3CADA2;
-}
-span{
-    color: black;
-}
-i{
-    color: #3CADA2;
-}
-.banner{
-    margin-top: 30px;
-}
 #btn-sewazoom{
+    background-color: #3CADA2;
+    border: none;
+    margin-left: 85%;
+}
+#btn-inventaris{
     background-color: #3CADA2;
     border: none;
     margin-left: 85%;
@@ -36,6 +24,43 @@ i{
 .btn-primary{
     background-color: #3CADA2;
     border: none;
+}
+#tb-tittle{
+    font-size: 1.5rem;
+}
+#tb-subtittle{
+    font-size: 1rem;
+}
+
+@media screen and (max-width : 500px) {
+    #btn-sewazoom{
+        width: 6rem;
+        font-size: 0.8rem;
+        margin-left: 75%;
+    }
+    #btn-inventaris{
+        width: 7rem;
+        font-size: 0.7rem;
+        margin-left: 65%;
+    }
+    th, td{
+        font-size: 10px;
+    }
+    .btn-danger{
+        font-size: 10px;
+        padding: .2rem;
+    }
+    #tb-tittle{
+        font-size: 1rem;
+    }
+    #tb-subtittle{
+        font-size: 0.7rem;
+    }
+    #tittle{
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
 }
 /* .home span{
     font-size: 1rem;

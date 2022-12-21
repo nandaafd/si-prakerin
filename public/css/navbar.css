@@ -16,3 +16,30 @@ i{
 .banner{
     margin-top: 30px;
 }
+.profile{
+    margin-top: 3rem;
+}
+.profile li{
+    list-style-type: none;
+}
+.profile .sidebar-link  {
+    background-color: #d4f7f3;
+    padding: .5rem 1rem;
+    padding-right: 5.5rem;
+    margin-right: .5rem;
+    border-radius: 7px;
+}
+.profile .logout{
+    background-color: #d4f7f3;
+    padding: .5rem 1rem;
+    width: 14.6rem;
+    border-radius: 7px;
+}
+.profile .logout:hover{
+    background-color: #93e6dc;
+    
+}
+.profile .sidebar-link:hover{
+    background-color: #93e6dc;
+    
+}

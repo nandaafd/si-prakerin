@@ -8,7 +8,7 @@
     <div class="box-container">
 
         <div class="box">
-            <a href="{{('file/Form_peminjaman_inventaris.pdf')}}" download="Form Peminjaman Inventaris">
+            <a href="{{asset('/inventaris')}}">
             <img src="{{('images/ikon1.png')}}" alt="">
             <h3>Peminjaman Inventaris</h3>
             </a>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="box">
-        <a href="{{('file/Form_permintaan_internet.pdf')}}" download="Form Permintaan Akses Internet">
+        <a href="{{asset('/aksesinternet')}}">
             <img src="{{('images/ikon5.png')}}" alt="">
             <h3>Pengajuan Akses Internet</h3>
             </a>

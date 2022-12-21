@@ -21,7 +21,15 @@ Route::get('/login', function () {
 Route::get('/sewazoom', function () {
     return view('fitur.sewazoom');
 });
-
+Route::get('/inventaris', function () {
+    return view('fitur.inventaris');
+});
+Route::get('/profile', function () {
+    return view('profile');
+});
+Route::get('/aksesinternet', function () {
+    return view('fitur.aksesinternet');
+});
 Route::group(['middleware' => 'prevent-back-history'],function(){
     
     Auth::routes(

@@ -2,25 +2,22 @@
 
 @section('content')
     <div class="header">
-        <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-sewazoom">Sewa Zoom</button>
-        <h1 id="tittle">Sewa room zoom</h1>
+        <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form" id="btn-inventaris">Pinjam Inventaris</button>
     </div>
-    <div class="banner">
-        <p>Jadikan meeting anda lebih nyaman 
-            dengan memakai akun zoom dari IT Behaestex.
-        </p>
+    <div class="header-tittle">
+        <h1 id="tittle">Peminjaman Inventaris</h1>
     </div>
+    
     <div class="main">
         <div class="row" id="table-head">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" id="tb-tittle">Meeting Lists</h4>
+                        <h4 class="card-title" id="tb-tittle">Inventory Booking Lists</h4>
                         <h5 class="card-subtitle" id="tb-subtittle">Senin, 34 Desember 2022</h5>
                     </div>
                     <div class="card-content">
 
-  
                         {{-- Tabel --}}
                         <div class="table-responsive">
                         
@@ -28,11 +25,11 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>NO</th>
+                                        <th>TANGGAL PINJAM</th>
                                         <th>NAMA</th>
                                         <th>DEPARTEMEN</th>
-                                        <th>WAKTU MULAI</th>
-                                        <th>WAKTU SELESAI</th>
-                                        <th>STATUS</th>
+                                        <th>KETERANGAN</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,7 +45,9 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#pengembalian">
+                                            Kembalikan
+                                        </button></td>
                                     </tr>
                                     
                                     <?php
@@ -63,14 +62,14 @@
                 </div>
             </div>
         </div>
-    </div>
 
+        
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Form Sewa room Zoom</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Form Peminjaman Inventaris</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -109,21 +108,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <label>Topik (judul room)</label>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="form-group has-icon-left">
-                                                        <div class="position-relative">
-                                                            <input type="text" class="form-control" placeholder="Topik (Untuk Judul Room)">
-                                                            <div class="form-control-icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-type" viewBox="0 0 16 16">
-                                                                    <path d="m2.244 13.081.943-2.803H6.66l.944 2.803H8.86L5.54 3.75H4.322L1 13.081h1.244zm2.7-7.923L6.34 9.314H3.51l1.4-4.156h.034zm9.146 7.027h.035v.896h1.128V8.125c0-1.51-1.114-2.345-2.646-2.345-1.736 0-2.59.916-2.666 2.174h1.108c.068-.718.595-1.19 1.517-1.19.971 0 1.518.52 1.518 1.464v.731H12.19c-1.647.007-2.522.8-2.522 2.058 0 1.319.957 2.18 2.345 2.18 1.06 0 1.716-.43 2.078-1.011zm-1.763.035c-.752 0-1.456-.397-1.456-1.244 0-.65.424-1.115 1.408-1.115h1.805v.834c0 .896-.752 1.525-1.757 1.525z"/>
-                                                                  </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
                                                     <label>Tanggal</label>
                                                 </div>
                                                 <div class="col-md-8">
@@ -140,37 +124,63 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <label>Jam Mulai</label>
+                                                    <label>Item Inventaris 1</label>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group has-icon-left">
-                                                        <div class="position-relative">
-                                                            <input type="time" class="form-control" placeholder="Jam Mulai">
-                                                            <div class="form-control-icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                                                                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                                                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
-                                                                  </svg>
-                                                            </div>
-                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-select" id="inputGroupSelect02">
+                                                              <option selected>Choose...</option>
+                                                              <option value="1">Proyektor</option>
+                                                              <option value="2">Laptop</option>
+                                                              <option value="3">Monitor</option>
+                                                              <option value="4">Converter HDMI to VGA</option>
+                                                              <option value="5">Converter VGA to HDMI</option>
+                                                              <option value="6">Kabel HDMI</option>
+                                                              <option value="7">Charger laptop</option>
+                                                            </select>
+                                                          </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <label>Jam Selesai</label>
+                                                    <label>Item Inventaris 2</label>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group has-icon-left">
-                                                        <div class="position-relative">
-                                                            <input type="time" class="form-control" placeholder="Jam Selesai">
-                                                            <div class="form-control-icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                                                                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                                                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
-                                                                  </svg>
-                                                            </div>
-                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-select" id="inputGroupSelect02">
+                                                              <option selected>Choose...</option>
+                                                              <option value="1">Proyektor</option>
+                                                              <option value="2">Laptop</option>
+                                                              <option value="3">Monitor</option>
+                                                              <option value="4">Converter HDMI to VGA</option>
+                                                              <option value="5">Converter VGA to HDMI</option>
+                                                              <option value="6">Kabel HDMI</option>
+                                                              <option value="7">Charger laptop</option>
+                                                            </select>
+                                                          </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-4">
+                                                    <label>Item Inventaris 3</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group has-icon-left">
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-select" id="inputGroupSelect02">
+                                                              <option selected>Choose...</option>
+                                                              <option value="1">Proyektor</option>
+                                                              <option value="2">Laptop</option>
+                                                              <option value="3">Monitor</option>
+                                                              <option value="4">Converter HDMI to VGA</option>
+                                                              <option value="5">Converter VGA to HDMI</option>
+                                                              <option value="6">Kabel HDMI</option>
+                                                              <option value="7">Charger laptop</option>
+                                                            </select>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                            
                                                 
                                                 <div class="col-12 d-flex justify-content-end">
                                                     
@@ -188,6 +198,30 @@
                             </div>
                             </div>
                         </div>
+
+                       
+                    
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="pengembalian" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Apakah Anda Yakin Ingin Mengembalikan Inventaris?</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <p>Pastikan inventaris yang anda pinjam tidak terdapat kerusakan dan masih berfungsi dengan baik. <br>
+                                Kembalikan inventaris ke IT Behaestex dengan tepat waktu!</p>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="button" class="btn btn-primary">Kembalikan</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+    </div>
 
 
 @endsection
