@@ -8,7 +8,7 @@
     <div class="box-container">
 
         <div class="box">
-            <a href="{{('file/Form_peminjaman_inventaris.pdf')}}" download="Form Peminjaman Inventaris">
+            <a href="{{asset('/inventaris')}}">
             <img src="{{('images/ikon1.png')}}" alt="">
             <h3>Peminjaman Inventaris</h3>
             </a>
@@ -30,21 +30,21 @@
         </div>
 
         <div class="box">
-        <a href="https://bit.ly/zoom-btx" target="_blank">
+        <a href="{{asset('/sewazoom')}}" target="">
             <img src="{{('images/ikon3.png')}}" alt="">
-            <h3>Sewa Zoom</h3>
+            <h3>Daftar Zoom</h3>
             </a>
         </div>
 
         <div class="box">
-        <a href="{{('file/Form_permintaan_internet.pdf')}}" download="Form Permintaan Akses Internet">
+        <a href="{{asset('/aksesinternet')}}">
             <img src="{{('images/ikon5.png')}}" alt="">
             <h3>Pengajuan Akses Internet</h3>
             </a>
         </div>
 
         <div class="box">
-        <a href="https://helpdesk.behaestex.co.id/">
+        <a href="https://helpdesk.behaestex.co.id/" target="_blank">
             <img src="{{('images/ikon6.png')}}" alt="">
             <h3>Helpdesk</h3>
             </a>

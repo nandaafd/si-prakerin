@@ -1,16 +1,35 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WoKikppcController;
+
+
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/portal', function () {
+    return view('portal');
 });
 
+Route::get('/register', function () {
+    return view('auth.register');
+});
+Route::get('/login', function () {
+    return view('auth.login');
+});
+Route::get('/sewazoom', function () {
+    return view('fitur.sewazoom');
+});
+Route::get('/inventaris', function () {
+    return view('fitur.inventaris');
+});
+Route::get('/profile', function () {
+    return view('profile');
+});
+Route::get('/aksesinternet', function () {
+    return view('fitur.aksesinternet');
+});
 Route::group(['middleware' => 'prevent-back-history'],function(){
     
     Auth::routes(
@@ -35,3 +54,4 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 });
 
 Route::get('/failedLogin', 'App\Http\Controllers\ErrorController@failedLogin')->name('failedLogin');
+?>
