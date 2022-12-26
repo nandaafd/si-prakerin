@@ -1,23 +1,27 @@
 @extends('layouts.main');
 
 @section('content')
-    <div class="header">
+<header class=" d-flex">
+    <a href="#" class="burger-btn d-flex d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+    <h1 id="tittle">Sewa room zoom</h1>
+   
+</header>
+
+    <div class="button">
         <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-sewazoom">Sewa Zoom</button>
-        <h1 id="tittle">Sewa room zoom</h1>
-    </div>
-    <div class="banner">
-        <p>Jadikan meeting anda lebih nyaman 
-            dengan memakai akun zoom dari IT Behaestex.
-        </p>
-    </div>
+     </div>
+
+    
     <div class="main">
         <div class="row" id="table-head">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title" id="tb-tittle">Meeting Lists</h4>
-                        <h5 class="card-subtitle" id="tb-subtittle">Senin, 34 Desember 2022</h5>
-                    </div>
+                        <div class="card-header">
+                            <h4 class="card-title" id="tb-tittle">Meeting Lists</h4>
+                            <h5 class="card-subtitle" id="tb-subtittle">Senin, 34 Desember 2022</h5>
+                        </div>
                     <div class="card-content">
 
   
@@ -109,7 +113,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <label>Topik (judul room)</label>
+                                                    <label>Topik</label>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group has-icon-left">

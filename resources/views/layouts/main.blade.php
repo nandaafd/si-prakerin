@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="{{ asset('/assets/vendors/fontawesome/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/vendors/simple-datatables/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/vendors/sweetalert2/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sewazoom.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fitur.css') }}">
 
     @stack('css')
 </head>
@@ -32,11 +32,7 @@
             @include('nav.navbar')
         </div>
         <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
+            
             
             @yield('content')
 
@@ -54,13 +50,12 @@
     </div>
 
     <script src="{{ asset('/assets/vendors/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/extension/jquery.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/extensions/jquery.min.js') }}"></script>
     <script src="{{ asset('/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('/assets/js/main.js') }}"></script>
-    <script src="{{ asset('/assets/js/sewazoom.js') }}"></script>
     <script src="{{ asset('/assets/vendors/simple-datatables/simple-datatables.js') }}"></script>
-    <script src="{{ asset('/assets/vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('/assets/vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>   
 
     @stack('js')
 

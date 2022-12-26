@@ -1,12 +1,18 @@
 @extends('layouts.main');
 
 @section('content')
-    <div class="header">
-        <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form" id="btn-inventaris">Pinjam Inventaris</button>
-    </div>
-    <div class="header-tittle">
-        <h1 id="tittle">Peminjaman Inventaris</h1>
-    </div>
+<header class=" d-flex">
+    <a href="#" class="burger-btn d-flex d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+    <h1 id="tittle">Peminjaman Inventaris</h1>
+   
+</header>
+
+        <div class="button">
+            <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-inventaris">Pinjam Inventaris</button>
+        </div>
+
     
     <div class="main">
         <div class="row" id="table-head">

@@ -103,11 +103,12 @@ span{
 }
 .btn{
   display: inline-block;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
   background:var(--main-color);
   color:#fff;
   cursor: pointer;
-  font-size: 1.7rem;
+  font-size: 1.8rem;
+  padding: .6rem 1.5rem;
 }
 .btn:hover{
   border: 1px solid black;
@@ -154,12 +155,7 @@ h5{
   .side{
     height: 100%;
   }
-  h1{
-    font-size: 36px;
-  }
-  h2{
-    font-size: 32px;
-  }
+
 
   /* footer */
   .footer{
@@ -175,18 +171,19 @@ h5{
   }
 }
 
-@media screen and (max-width: 425px) {
+@media only screen and (max-width: 425px) {
   p{
-    width: 85%;
-    font-size: 12px;
+    width: 80%;
+    font-size: 11px;
     text-align: justify;
   }
   h1{
-    font-size: 28px;
+    font-size: 22px;
   }
   h2{
-    font-size: 24px;
+    font-size: 16px;
   }
+  .btn{font-size: 1.5rem; padding: .4rem 1rem;}
 
   .footer{
     background-color: #CCF5F1;
@@ -211,6 +208,14 @@ h5{
   .side{
     margin-left: 10px;
   }
+  h1{
+    font-size: 28px;
+  }
+  h2{
+    font-size: 22px;
+  }
+  p{font-size: 14px;}
+
 }
 
 @media only screen and (max-width:1440px){

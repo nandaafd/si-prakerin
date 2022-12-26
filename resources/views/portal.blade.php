@@ -37,7 +37,7 @@
         </div>
 
         <div class="box">
-        <a href="{{asset('/aksesinternet')}}">
+        <a href="{{asset('/aksesinternet')}}"   >
             <img src="{{('images/ikon5.png')}}" alt="">
             <h3>Pengajuan Akses Internet</h3>
             </a>
