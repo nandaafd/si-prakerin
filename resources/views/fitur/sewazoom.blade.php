@@ -5,13 +5,20 @@
     <a href="#" class="burger-btn d-flex d-xl-none">
         <i class="bi bi-justify fs-3"></i>
     </a>
-    <h1 id="tittle">Sewa room zoom</h1>
+    
    
 </header>
+   <div class="container">
+    <div class="row">
+        <div class="col-9">
+            <h1 id="tittle">Sewa room zoom</h1>
+        </div>
+        <div class="col-3 text-center">
+            <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-sewazoom">Sewa Zoom</button>
+        </div>
+    </div>
+   </div>
 
-    <div class="button">
-        <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-sewazoom">Sewa Zoom</button>
-     </div>
 
     
     <div class="main">

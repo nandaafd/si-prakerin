@@ -3,9 +3,11 @@ header{
     margin-top: -1.5rem;
     width: 100%;
     padding: 1rem;
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
+    background-color: aquamarine;
 }
 header a{
-    margin-top: .5rem;
     margin-left: 1rem;
     font-size: 2px;
     padding-right: 2rem;
@@ -15,15 +17,16 @@ header a{
     padding: 0px;
 }
 #tittle{
+    margin-left: 1rem;
     padding: 0;
+    font-size: 2rem;
 }
 
 #btn-sewazoom{
     background-color: #3CADA2;
-    margin-left: 75%;
     border: none;
     width: 10rem;
-    margin-bottom: 1rem;
+    margin-top: 5px;
 }
 #btn-inventaris{
     background-color: #3CADA2;
@@ -35,13 +38,21 @@ header a{
 #btn-sewazoom:hover{
     background-color: black;
 }
+h2{
+    width: 55%;
+    margin-left: 4%;
+    font-size: 1rem;
+}
 
 #exampleModal h1{
     margin-top: .5rem;
 }
-.row{
+#table-head{
     margin: auto;
     width: 95%;
+}
+.container{
+    margin-bottom: 1rem;
 }
 .table{
     margin-left: 1rem;
