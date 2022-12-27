@@ -1,12 +1,21 @@
 @extends('layouts.main');
 
 @section('content')
-<header class=" d-flex">
-    <a href="#" class="burger-btn d-flex d-xl-none">
-        <i class="bi bi-justify fs-3"></i>
-    </a>
+<header class="header d-flex py-2 py-4">
+    <div class="container" id="nav-content">
+        <div class="row">
+            <div class="col-1">
+                <a href="#" class="burger-btn d-flex d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </div>
+            <div class="col-11 text-center">
+                <h1 id="nav-tittle" class=" d-xl-none">PORTAL IT</h1>
+            </div>
+        </div>
+    </div>
     
-   
+    
 </header>
    <div class="container">
     <div class="row">
@@ -35,7 +44,7 @@
                         {{-- Tabel --}}
                         <div class="table-responsive">
                         
-                            <table class="table mb-0 text-center">
+                            <table class="table mb-0 text-center table-bordered">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>NO</th>

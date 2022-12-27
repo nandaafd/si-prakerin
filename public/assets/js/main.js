@@ -31,12 +31,24 @@ window.addEventListener('resize', (event) => {
 document.querySelector('.burger-btn').addEventListener('click', () => {
     document.getElementById('sidebar').classList.toggle('active');
     document.querySelector('.burger-btn').classList.add('d-xl-none');
+    document.querySelector('#nav-tittle').classList.add('d-xl-none');
+    document.querySelector('.header').classList.add('py-4');
 })
 document.querySelector('.sidebar-hide').addEventListener('click', () => {
     document.getElementById('sidebar').classList.toggle('active');
     document.querySelector('.burger-btn').classList.remove('d-xl-none');
+    document.querySelector('#nav-tittle').classList.remove('d-xl-none');
+    document.querySelector('.header').classList.remove('py-4');
 })
 
+window.addEventListener('scroll', function() {
+    var elementTarget = document.querySelector('.header');
+    if (window.scrollY > 100) {
+        document.querySelector('.header').classList.add('.header-a');
+    } else {
+        document.querySelector('.header').classList.remove('.header-a');
+    }
+  });
 
 // Perfect Scrollbar Init
 if(typeof PerfectScrollbar == 'function') {
