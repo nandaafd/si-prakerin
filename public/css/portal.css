@@ -157,6 +157,7 @@ header .navbar .sidebar-link{
 }
 header .navbar .sidebar-link:hover{
     color:var(--main-color);
+    border-radius: 7px;
     background-color: #fff5c6;
 }
 
