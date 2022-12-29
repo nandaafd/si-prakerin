@@ -1,24 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Rubik+Vinyl&display=swap');
 
+/* header/navbar atas */
 header{
     margin-top: -1.5rem;
     width: 100%;
     margin-bottom: 2rem;
-    background-color: aquamarine;
+    background-color: #3CADA2;
 }
 header a{
     margin-left: 1rem;
     margin-top: 3px;
+    
 }
+.bi-justify{color: white;}
 
 #nav-content{
     margin: 0px;    
 }
 #nav-tittle{
-    color: #3CADA2;
-    font-family: 'Poppins','sans-serif';
+    color: #fff;
+    font-family: 'Rubik Vinyl', cursive;
     font-size: 28px;
 }
+
+/* main */
 #main{
     padding-top: 0;
     padding: 0px;
@@ -28,6 +34,7 @@ header a{
     font-size: 2rem;
 }
 
+/* button */
 #btn-sewazoom{
     background-color: #3CADA2;
     border: none;
@@ -81,15 +88,24 @@ header a{
     font-size: 10px;
     padding: 3px 15px;
 }
-h2{
+.btn-primary{
+    background-color: #3CADA2;
+    border: none;
+}
+
+
+/* h2{
     width: 55%;
     margin-left: 4%;
     font-size: 1rem;
-}
+} */
 
+/* modal */
 #exampleModal h1{
     margin-top: .5rem;
 }
+
+/* table */
 #table-head{
     margin: auto;
     width: 95%;
@@ -101,10 +117,7 @@ h2{
     width: 98%;
     margin: auto;
 }
-.btn-primary{
-    background-color: #3CADA2;
-    border: none;
-}
+
 #tb-tittle{
     font-size: 1.5rem;
 }
@@ -116,30 +129,65 @@ th, td{
 
 }
 
+/* footer */
+
+.footer{
+    padding: 1.5rem;
+}
+
 
 @media screen and (max-width : 500px) {
     header{
-        padding: .5rem;
         padding-bottom: 0px;
+        padding: .5rem;
         text-align: center;
     }
     header a{
-        padding-right: 1rem;
         margin-left: 0px;
     }
+    /* .col-11, .col-1{
+        margin-top: -10px;
+    } */
+    .col-1{
+        margin-top: -5px;
+    }
     #nav-tittle{
-        font-size: 22px;
+        font-size: 18px;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
     }
     #btn-sewazoom{
-        width: 4rem;
-        font-size: .4rem;
+        width: 4.5rem;
+        font-size: .5rem;
         padding: none;
     }
     #btn-inventaris{
         width: 3.5rem;
         padding: .2rem;
-        font-size: 0.5rem;
-        
+        font-size: 0.7rem; 
+    }
+    #btn-aksesprogram{
+        width: 3.5rem;
+        padding: .2rem;
+        font-size: 0.7rem; 
+    }
+    #btn-aksesinternet{
+        width: 3.5rem;
+        padding: .2rem;
+        font-size: 0.7rem; 
+    }
+    #btn-revisidata{
+        width: 4.5rem;
+        padding: .2rem;
+        font-size: 0.7rem; 
+    }
+    #btn-detail{
+        width: 3rem;
+        padding: .2rem;
+        font-size: 0.5rem; 
+    }
+    #btn-pengembalian{
+        font-size: 10px;
     }
     th, td{
         font-size: 10px;

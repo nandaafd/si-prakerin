@@ -13,6 +13,24 @@ span{
 i{
     color: #3CADA2;
 }
+.home .sidebar-item  {
+    width: 15rem;
+    padding: .7rem 1rem;
+    padding-right: 5.5rem;
+    margin-right: .5rem;
+    margin-top: 30px;
+    border-radius: 7px;
+}
+.home li{list-style-type: none;}
+#home{
+    background-color: #3CADA2;
+    border-radius: 7px;
+}
+#home span{color: white; padding-top: .5rem; padding-left: .5rem;}
+#home svg{color: white; margin-bottom: 5px;}
+#home:hover{
+    background-color: black;
+}
 .banner{
     margin-top: 30px;
 }
@@ -23,23 +41,26 @@ i{
     list-style-type: none;
 }
 .profile .sidebar-link  {
-    background-color: #d4f7f3;
+    background-color: #c8f5f0;
+    color: #3CADA2;
     padding: .5rem 1rem;
     padding-right: 5.5rem;
     margin-right: .5rem;
     border-radius: 7px;
 }
+.profile span{color: black; padding-left: .5rem;}
+.profile svg{ color: black;}
 .profile .logout{
-    background-color: #d4f7f3;
+    background-color: #c8f5f0;
     padding: .5rem 1rem;
     width: 14.6rem;
     border-radius: 7px;
 }
 .profile .logout:hover{
-    background-color: #93e6dc;
+    background-color: wheat;
     
 }
 .profile .sidebar-link:hover{
-    background-color: #93e6dc;
+    background-color: wheat;
     
 }
