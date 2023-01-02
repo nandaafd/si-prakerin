@@ -37,7 +37,7 @@
                 <div class="card">
                         <div class="card-header">
                             <h4 class="card-title" id="tb-tittle">Daftar pengajuan akses program</h4>
-                            <h5 class="card-subtitle" id="tb-subtittle">Senin, 34 Desember 2022</h5>
+                            <h5 class="card-subtitle" id="tb-date">Senin, 34 Desember 2022</h5>
                         </div>
                     <div class="card-content">
 

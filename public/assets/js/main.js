@@ -41,7 +41,8 @@ document.querySelector('.sidebar-hide').addEventListener('click', () => {
     document.querySelector('.header').classList.remove('py-4');
 });
 
-
+const date = new Date();
+document.getElementById('tb-date').innerHTML = date.toLocaleDateString();
 
 // Perfect Scrollbar Init
 if(typeof PerfectScrollbar == 'function') {

@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Rubik+Vinyl&display=swap');
 
-/* header/navbar atas */
 body{
     animation: body ease 2.5s;
 }
@@ -13,6 +12,9 @@ body{
         opacity: 1;
     }
 }
+
+/* header/navbar atas */
+
 header{
     margin-top: -1.5rem;
     width: 100%;
@@ -33,6 +35,7 @@ header a{
     color: #fff;
     font-family: 'Rubik Vinyl', cursive;
     font-size: 28px;
+    /* margin-top: 10px; */
 }
 
 /* main */
@@ -132,7 +135,7 @@ header a{
 #tb-tittle{
     font-size: 1.5rem;
 }
-#tb-subtittle{
+#tb-date{
     font-size: 1rem;
 }
 th, td{
@@ -210,7 +213,7 @@ th, td{
     #tb-tittle{
         font-size: 1rem;
     }
-    #tb-subtittle{
+    #tb-date{
         font-size: 0.7rem;
     }
     #tittle{
