@@ -2,6 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Rubik+Vinyl&display=swap');
 
 /* header/navbar atas */
+body{
+    animation: body ease 2.5s;
+}
+@keyframes body {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 header{
     margin-top: -1.5rem;
     width: 100%;

@@ -26,13 +26,23 @@ body{
   max-height: 100%;
   z-index: 1;
   margin-left: 110px;
+  animation: side ease 1s;
+}
+@keyframes side {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1  ;
+  }
+
 }
 
 /* gambar karakter welcome */
 .welcome{
   z-index: 2;
   max-width: 60%;
-  animation: welcome ease 4s;
+  animation: welcome ease 2s;
 }
 @keyframes welcome {
   0% {
