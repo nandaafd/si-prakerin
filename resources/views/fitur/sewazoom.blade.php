@@ -1,30 +1,50 @@
 @extends('layouts.main');
 
 @section('content')
-    <div class="header">
-        <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-sewazoom">Sewa Zoom</button>
-        <h1 id="tittle">Sewa room zoom</h1>
+<header class="header d-flex py-2 py-4">
+    <div class="container" id="nav-content">
+        <div class="row">
+            <div class="col-1">
+                <a href="#" class="burger-btn d-flex d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </div>
+            <div class="col-11 text-center">
+                <h1 id="nav-tittle" class=" d-xl-none">PORTAL IT</h1>
+            </div>
+        </div>
     </div>
-    <div class="banner">
-        <p>Jadikan meeting anda lebih nyaman 
-            dengan memakai akun zoom dari IT Behaestex.
-        </p>
+    
+    
+</header>
+   <div class="container">
+    <div class="row">
+        <div class="col-9">
+            <h1 id="tittle">Sewa room zoom</h1>
+        </div>
+        <div class="col-3 text-center">
+            <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-sewazoom">Sewa Zoom</button>
+        </div>
     </div>
+   </div>
+
+
+    
     <div class="main">
         <div class="row" id="table-head">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title" id="tb-tittle">Meeting Lists</h4>
-                        <h5 class="card-subtitle" id="tb-subtittle">Senin, 34 Desember 2022</h5>
-                    </div>
+                        <div class="card-header">
+                            <h4 class="card-title" id="tb-tittle">Meeting Lists</h4>
+                            <h5 class="card-subtitle" id="tb-date"></h5>
+                        </div>
                     <div class="card-content">
 
   
                         {{-- Tabel --}}
                         <div class="table-responsive">
                         
-                            <table class="table mb-0 text-center">
+                            <table class="table mb-0 text-center table-bordered">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>NO</th>
@@ -109,7 +129,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <label>Topik (judul room)</label>
+                                                    <label>Topik</label>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group has-icon-left">

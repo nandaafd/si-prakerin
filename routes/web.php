@@ -30,6 +30,13 @@ Route::get('/profile', function () {
 Route::get('/aksesinternet', function () {
     return view('fitur.aksesinternet');
 });
+Route::get('/revisidata', function () {
+    return view('fitur.revisidata');
+});
+Route::get('/aksesprogram', function () {
+    return view('fitur.aksesprogram');
+});
+
 Route::group(['middleware' => 'prevent-back-history'],function(){
     
     Auth::routes(

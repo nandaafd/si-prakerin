@@ -16,14 +16,14 @@
 
 
         <div class="box">
-        <a href="{{('file/Form_revisi_data.pdf')}}"download="Form Pengajuan Revisi Data">
+        <a href="{{asset('/revisidata')}}" target="">
             <img src="{{('images/ikon2.png')}}" alt="">
             <h3>Pengajuan Revisi Data</h3>
         </a>
         </div>
 
         <div class="box">
-        <a href="{{('file/FRM_PENGAJUAN_PEMBUATAN_MODIFIKASI_PROGRAM.pdf')}}" download="Form Pengajuan Pembuatan Modifikasi Program">
+        <a href="{{asset('/aksesprogram')}}" target="">
             <img src="{{('images/ikon4.png')}}" alt="">
             <h3>Pengajuan Akses Program</h3>
             </a>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="box">
-        <a href="{{asset('/aksesinternet')}}">
+        <a href="{{asset('/aksesinternet')}}"   >
             <img src="{{('images/ikon5.png')}}" alt="">
             <h3>Pengajuan Akses Internet</h3>
             </a>
