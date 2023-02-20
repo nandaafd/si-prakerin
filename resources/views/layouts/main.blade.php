@@ -16,12 +16,10 @@
     <link rel="stylesheet" href="{{ asset('/assets/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/app.css') }}">
-    <link rel="shortcut icon" href="{{asset('images/logobtx.png')}}" />
     <link rel="stylesheet" href="{{ asset('/assets/vendors/fontawesome/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/vendors/simple-datatables/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/vendors/sweetalert2/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/fitur.css') }}">
+
 
     @stack('css')
 </head>
@@ -39,10 +37,10 @@
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
-                        <p>{{ date('Y') }} &copy; {{ env('APP_NAME') }} - Behaestex Group</p>
+                        <p>{{ date('Y') }} &copy; {{ env('APP_NAME') }} - Rolisa Group</p>
                     </div>
                     <div class="float-end">
-                        <p>Crafted by <a href="">IT BTX</a></p>
+                        <p>Crafted by <a href="">Rolisa</a></p>
                     </div>
                 </div>
             </footer>
@@ -54,7 +52,6 @@
     <script src="{{ asset('/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('/assets/js/main.js') }}"></script>
-    <script src="{{ asset('/assets/js/datetime.js') }}"></script>
     <script src="{{ asset('/assets/vendors/simple-datatables/simple-datatables.js') }}"></script>
     <script src="{{ asset('/assets/vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>   
 

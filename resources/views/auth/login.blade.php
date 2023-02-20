@@ -7,7 +7,8 @@
     <div class="row h-100">
         <div class="col-lg-5 col-12">
             <div id="auth-left">
-                <h1 class="auth-title">Log in.</h1>
+                <img src="{{asset('images/logo-long.png')}}" alt="">
+                <h1 class="auth-title">Hi, Welcome Back!</h1>
                 <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
     
                 <form action="index.html" method="POST">
@@ -43,8 +44,8 @@
             </div>
         </div>
         <div class="col-lg-7 d-none d-lg-block">
-            <div id="auth-right" style="background:url('/images/sarung.png');height:100%;">
-                
+            <div id="auth-right" style="">
+                <img class="bg-login" src="{{asset('images/gedung.png')}}" alt="">
             </div>
         </div>
     </div>
