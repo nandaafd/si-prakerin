@@ -9,14 +9,17 @@
                 <img src="{{asset('images/logo-long.png')}}" alt="">
                 <h1 class="auth-title">Hi, Welcome!</h1>
                 <p class="auth-subtitle mb-5">Please input your data to register</p>
-                <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                      <button class="nav-link active" id="guru" data-bs-toggle="tab" data-bs-target="#guru" type="button" role="tab" aria-controls="guru" aria-selected="true">Guru</button>
-                      <button class="nav-link" id="siswa" data-bs-toggle="tab" data-bs-target="#siswa" type="button" role="tab" aria-controls="siswa" aria-selected="false">Siswa</button>
+                <nav class="nav nav-tabs">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#aa">1</button>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bb">2</button>
+                <div class="tab-content">
+                    <div class="tab-pane active show fade" id="aa">
+                        <h1>1</h1>
                     </div>
-                  </nav>
-                  <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="guru" role="tabpanel" aria-labelledby="guru" tabindex="0">
+                    <div class="tab-pane fade" id="bb">
+                        <h1>222</h1>
+                    </div>
+                </div>
                         <form action="http://127.0.0.1:8000/login" method="POST">
                             <div class="form-group position-relative has-icon-left mb-4">
                                 <select class="form-select" id="basicSelect">
@@ -76,15 +79,7 @@
                             </div>
                             <button class="btn btn-primary btn-block shadow-lg mt-4" style="height: 3rem;">Sign Up</button>
                         </form>
-                    </div>
-                    <div class="tab-pane fade" id="siswa" role="tabpanel" aria-labelledby="siswa" tabindex="0">
-
-                    </div>
-                  </div>
-               
-                <div class="text-center mt-5 text-lg fs-4">
-                    <p class="text-gray-600 subtittle" id="">Already have an account? <a href="http://127.0.0.1:8000/login" class="font-bold">Sign In</a>.</p>
-                </div>
+                   
             </div>
         </div>
         <div class="col-lg-7 d-none d-lg-block">
