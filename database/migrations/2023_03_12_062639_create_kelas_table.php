@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSewazoomTable extends Migration
+class CreateKelasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateSewazoomTable extends Migration
      */
     public function up()
     {
-        Schema::create('sewazoom', function (Blueprint $table) {
+        Schema::create('kelas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama',255);
-            $table->string('departemen',255);
-            $table->string('topik',255);
-            $table->date('tanggal');
-            $table->time('jam_mulai');
-            $table->time('jam_selesai');
+            $table->string('nama_kelas',255);
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ class CreateSewazoomTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sewazoom');
+        Schema::dropIfExists('kelas');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAksesinternetTable extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateAksesinternetTable extends Migration
      */
     public function up()
     {
-        Schema::create('aksesinternet', function (Blueprint $table) {
+        Schema::create('admin', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama',255);
-            $table->string('departemen',255);
-            $table->string('jabatan',255);
-            $table->string('keperluan_email',255);
-            $table->string('keperluan_browsing',255);
+            $table->string('username',255);
+            $table->string('password',255);
+            $table->integer('hak_akses_id')->unsigned();
+            $table->foreign('hak_akses_id')->references('id')->on('hak_akses');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateAksesinternetTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aksesinternet');
+        Schema::dropIfExists('admin');
     }
 }
